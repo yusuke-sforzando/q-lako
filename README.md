@@ -10,7 +10,6 @@ q-lako is a service to quickly register equipments and books.
 - [How to](#how-to)
   - [Enter Python Virtual Environment](#enter-python-virtual-environment)
   - [Run](#run)
-    - [Dashboard](#dashboard)
   - [Lint](#lint)
   - [Test](#test)
 - [Misc](#misc)
@@ -45,10 +44,6 @@ python main.py
 ```
 
 If you start it locally, it will start in **Debug** mode.
-
-#### Dashboard
-
-If you installed [flask_monitoringdashboard](https://github.com/flask-dashboard/Flask-MonitoringDashboard), you can check the performance at `http://127.0.0.1:8888/dashboard` in **Debug** mode.
 
 ### Lint
 

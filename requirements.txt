@@ -1,7 +1,7 @@
 autopep8
 flake8
 Flask
-Flask-MonitoringDashboard
+#Flask-MonitoringDashboard
 google-cloud-logging
 pytest
 pytest-cov
