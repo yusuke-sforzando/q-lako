@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="static/images/favicon.png">
+  <title>q-lako - {{ subtitle | default("a service to quickly register equipments and books") }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://unpkg.com/tailwindcss@%5E1.0/dist/tailwind.min.css" rel="stylesheet">
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+  {% include "_header.html" %}
+  <div class="text-center">
+    {% block main %}
+    {% endblock %}
+    <p>{{ message }}</p>
+  </div>
+  {% include "_footer.html" %}
+  <!-- <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga("create", "UA-XXXXX-Y", "auto"); ga("set", "anonymizeIp", true); ga("set", "transport", "beacon"); ga("send", "pageview")
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script> -->
+</body>
+
+</html>
