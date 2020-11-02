@@ -1,8 +1,10 @@
 # q-lako
 
-![On push](https://github.com/sforzando/q-lako/workflows/On%20push/badge.svg)
-![CodeQL](https://github.com/sforzando/q-lako/workflows/CodeQL/badge.svg)
+[![On push](https://github.com/sforzando/q-lako/workflows/On%20push/badge.svg)](https://github.com/sforzando/q-lako/actions?query=workflow%3A%22On+push%22)
+[![CodeQL](https://github.com/sforzando/q-lako/workflows/CodeQL/badge.svg)](https://github.com/sforzando/q-lako/actions?query=workflow%3ACodeQL)
 [![codecov](https://codecov.io/gh/sforzando/q-lako/branch/master/graph/badge.svg)](https://codecov.io/gh/sforzando/q-lako)
+
+![logo](https://user-images.githubusercontent.com/32637762/97838815-53fc3d80-1d24-11eb-8668-58037a4a61a7.png)
 
 q-lako is a service to quickly register equipments and books.
 
@@ -18,7 +20,7 @@ q-lako is a service to quickly register equipments and books.
 ## Requirements
 
 - [Python](https://www.python.jp) 3.8.4 or higher
-  - [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+  - [Flask](https://flask.palletsprojects.com/)
 - [Google Cloud Platform](https://console.cloud.google.com/)
   - [Google App Engine](https://cloud.google.com/appengine)
 
@@ -34,7 +36,7 @@ pip install --upgrade pip
 pip install --upgrade --use-feature=2020-resolver -r requirements.txt
 ```
 
-The reason why `ARCHFLAGS` needs to be specified is due to [Apple bug in Xcode12](https://github.com/giampaolo/psutil/issues/1832).
+The reason why `ARCHFLAGS` needs to be specified is due to [Apple's bugs in Xcode12](https://github.com/giampaolo/psutil/issues/1832).
 It is recommended to explicitly specify the resolver options until [`pip` version 20.3](https://www.python.jp/pages/2020-10-07-new-pip-deps.html#%E6%96%B0%E3%81%97%E3%81%84%E4%BE%9D%E5%AD%98%E3%83%AA%E3%82%BE%E3%83%AB%E3%83%90).
 
 ### Run
