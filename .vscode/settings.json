@@ -1,7 +1,9 @@
 {
   "cSpell.words": [
+    "dotenv",
     "lako",
     "q",
     "q lako"
-  ]
+  ],
+  "python.formatting.provider": "autopep8"
 }
