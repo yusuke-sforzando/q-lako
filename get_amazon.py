@@ -1,6 +1,7 @@
 # !/usr/bin/env python3
 
 from amazon.paapi import AmazonAPI
+from amazon.paapi import AmazonException
 import api_keys
 
 
@@ -26,12 +27,17 @@ class AmazonListGetter:
 
         amazon = AmazonAPI(api_keys.amazon_access_key, api_keys.amazon_secret_key,
                            api_keys.amazon_partner_tag, "JP")
-        self.products = amazon.search_items(item_count=self.item_count, keywords=self.search_word)
-        for product in self.products["data"]:
-            title = product.item_info.title.display_value
-            url = product.detail_page_url
-            try:
-                image_url = product.images.primary.medium.url
-            except AttributeError:
-                image_url = "None"
-            self.amazon_list.append({"Title": title, "url": url, "image_url": image_url})
+        try:
+            self.products = amazon.search_items(item_count=self.item_count, keywords=self.search_word)
+            for product in self.products["data"]:
+                title = product.item_info.title.display_value
+                url = product.detail_page_url
+                try:
+                    image_url = product.images.primary.medium.url
+                    self.amazon_list.append({"Title": title, "url": url, "image_url": image_url})
+                except AttributeError as e:
+                    print("image_url is not exist", e)
+                    self.amazon_list.append({"Title": title, "url": url, "image_url": ""})
+        except AmazonException as e:
+            print("No results found for your request", e)
+            self.amazon_list = []

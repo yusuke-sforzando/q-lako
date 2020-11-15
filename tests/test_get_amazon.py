@@ -14,3 +14,8 @@ def test_search_amazon_asin():
 def test_search_amazon_isbn():
     amazon_search_isbn = AmazonListGetter("9784839966607").amazon_list
     assert amazon_search_isbn
+
+
+def test_search_amazon_no():
+    amazon_search_no = AmazonListGetter("9784839966607asadAASSSSSS").amazon_list
+    assert not amazon_search_no
