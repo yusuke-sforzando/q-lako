@@ -38,7 +38,7 @@ class AmazonListGetter:
 
 
 if __name__ == "__main__":
-    search_word = "PS5"
+    search_word = "9784839966607"
     amazon_list = AmazonListGetter(search_word).amazon_list
     for product in amazon_list:
         print(product)
