@@ -5,7 +5,7 @@ from amazon.paapi import AmazonException
 import api_keys
 
 
-class AmazonListGetter:
+class SearchAmazonList:
     """Get a list of Amazon's search results."""
 
     def __init__(self, search_word: str, item_count=3):
