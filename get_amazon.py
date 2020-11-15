@@ -35,10 +35,3 @@ class AmazonListGetter:
             except AttributeError:
                 image_url = "None"
             self.amazon_list.append({"Title": title, "url": url, "image_url": image_url})
-
-
-if __name__ == "__main__":
-    search_word = "9784839966607"
-    amazon_list = AmazonListGetter(search_word).amazon_list
-    for product in amazon_list:
-        print(product)
