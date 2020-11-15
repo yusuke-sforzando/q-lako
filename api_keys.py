@@ -2,6 +2,7 @@
 
 from dotenv import load_dotenv
 import os
+
 load_dotenv()
 
 airtable_base_id = os.getenv("airtable_base_id")
