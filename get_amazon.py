@@ -4,7 +4,7 @@ from amazon.paapi import AmazonAPI
 import api_keys
 
 
-class GetAmazonList:
+class AmazonListGetter:
     """Get a list of Amazon's search results."""
 
     def __init__(self, search_word: str, item_count=3):
@@ -39,6 +39,6 @@ class GetAmazonList:
 
 if __name__ == "__main__":
     search_word = "PS5"
-    amazon_list = GetAmazonList(search_word).amazon_list
+    amazon_list = AmazonListGetter(search_word).amazon_list
     for product in amazon_list:
         print(product)
