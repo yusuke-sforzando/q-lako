@@ -1,20 +1,7 @@
 # !/usr/bin/env python3
 
-# Start preliminary injunction
-
 from amazon.paapi import AmazonAPI
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-
-
-class Amazon:
-    amazon_partner_tag = os.getenv("amazon_partner_tag")
-    amazon_access_key = os.getenv("amazon_access_key")
-    amazon_secret_key = os.getenv("amazon_secret_key")
-    key = os.getenv("amazon_secret_key")
-# End preliminary injunction
+import api_keys
 
 
 class GetAmazonList:
@@ -34,11 +21,11 @@ class GetAmazonList:
             product name and ASIN/ISBN code as arguments.
 
         Returns:
-            products :
+            products (list): List of Amazon items (from 1 to 30).
         """
 
-        amazon = AmazonAPI(Amazon.amazon_access_key, Amazon.amazon_secret_key,
-                           Amazon.amazon_partner_tag, "JP")
+        amazon = AmazonAPI(api_keys.amazon_access_key, api_keys.amazon_secret_key,
+                           api_keys.amazon_partner_tag, "JP")
         self.products = amazon.search_items(item_count=self.item_count, keywords=self.search_word)
         for product in self.products["data"]:
             title = product.item_info.title.display_value
@@ -51,8 +38,7 @@ class GetAmazonList:
 
 
 if __name__ == "__main__":
-    # amazon_list = GetAmazonList("B087QZ1FWZ").amazon_list
-    amazon_list = GetAmazonList("PS5").amazon_list
-
+    search_word = "PS5"
+    amazon_list = GetAmazonList(search_word).amazon_list
     for product in amazon_list:
         print(product)

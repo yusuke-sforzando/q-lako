@@ -11,6 +11,7 @@ q-lako is a service to quickly register equipments and books.
 - [Requirements](#requirements)
 - [How to](#how-to)
   - [Enter Python Virtual Environment](#enter-python-virtual-environment)
+  - [Decrypt `.env.gpg`](#decrypt-envgpg)
   - [Run](#run)
   - [Lint](#lint)
   - [Test](#test)
@@ -23,6 +24,7 @@ q-lako is a service to quickly register equipments and books.
   - [Flask](https://flask.palletsprojects.com/)
 - [Google Cloud Platform](https://console.cloud.google.com/)
   - [Google App Engine](https://cloud.google.com/appengine)
+- [GnuPG](https://gnupg.org)
 
 ## How to
 
@@ -38,6 +40,13 @@ pip install --upgrade --use-feature=2020-resolver -r requirements.txt
 
 The reason why `ARCHFLAGS` needs to be specified is due to [Apple's bugs in Xcode12](https://github.com/giampaolo/psutil/issues/1832).
 It is recommended to explicitly specify the resolver options until [`pip` version 20.3](https://www.python.jp/pages/2020-10-07-new-pip-deps.html#%E6%96%B0%E3%81%97%E3%81%84%E4%BE%9D%E5%AD%98%E3%83%AA%E3%82%BE%E3%83%AB%E3%83%90).
+
+### Decrypt `.env.gpg`
+
+Use your passphrase to decrypt `.env.gpg`.
+Keep your passphrase in a secure location. cf. [YubiKey](https://www.yubico.com)
+
+`gpg --quiet --batch --decrypt --passphrase="$SECRET_PASSPHRASE" --output=.env .env.gpg`
 
 ### Run
 
