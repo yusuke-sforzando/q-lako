@@ -1,6 +1,7 @@
 import pytest
 
 from main import app
+import os
 
 
 @pytest.fixture
@@ -16,8 +17,8 @@ def test_GET_index(test_client):
 
 
 def test_api_keys():
-    assert api_keys.airtable_base_id
-    assert api_keys.airtable_api_key
-    assert api_keys.amazon_partner_tag
-    assert api_keys.amazon_access_key
-    assert api_keys.amazon_secret_key
+    assert os.getenv("airtable_base_id")
+    assert os.getenv("airtable_api_key")
+    assert os.getenv("amazon_partner_tag")
+    assert os.getenv("amazon_access_key")
+    assert os.getenv("amazon_secret_key")
