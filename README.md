@@ -46,7 +46,7 @@ It is recommended to explicitly specify the resolver options until [`pip` versio
 Use your passphrase to decrypt `.env.gpg`.
 Keep your passphrase in a secure location. cf. [YubiKey](https://www.yubico.com)
 
-`gpg --quiet --batch --decrypt --passphrase="$SECRET_PASSPHRASE" --output=.env .env.gpg`
+`gpg --quiet --batch --decrypt --output=.env .env.gpg`
 
 ### Run
 
