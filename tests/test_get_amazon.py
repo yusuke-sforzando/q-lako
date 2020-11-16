@@ -32,5 +32,5 @@ def test_search_amazon_empty():
 def test_search_amazon_no_exist():
     """Testing when a non-existent value is entered."""
 
-    amazon_search_no = AmazonGetter().get_search_list("0123456781011121314")
-    assert not amazon_search_no
+    amazon_search_no_exist = AmazonGetter().get_search_list("0123456781011121314")
+    assert not amazon_search_no_exist
