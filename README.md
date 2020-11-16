@@ -56,7 +56,7 @@ Save the API Key in the environment variable and encrypt it.
    amazon_secret_key="amazon_secret_key"
    ```
 
-1. Encrypt `.env` and type passphrase
+1. Encrypt `.env` and type passphrase  
    `gpg --symmetric --cipher-algo AES256 .env`
 
 1. Make sure that `.env.gpg` is created

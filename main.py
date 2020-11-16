@@ -4,8 +4,6 @@ from flask import render_template
 
 from __init__ import app
 
-import os
-
 
 @app.route("/", methods=["GET"])
 def index():
@@ -19,5 +17,4 @@ def index():
 
 
 if __name__ == "__main__":
-    print(os.getenv("airtable_base_id"))
     app.run(host="0.0.0.0", port=8888)
