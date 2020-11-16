@@ -1,14 +1,16 @@
-from dotenv import load_dotenv
-from flask import Flask
 import os
 
-load_dotenv()
+from dotenv import load_dotenv
+from flask import Flask
+
+load_dotenv(verbose=True)
 
 app = Flask(__name__)
 
 
 if os.getenv("GAE_ENV", "").startswith("standard"):
     """ Production in GAE """
+
     app.config["IS_LOCAL"] = False
     import google.cloud.logging
     from google.cloud.logging.handlers import CloudLoggingHandler
@@ -21,6 +23,7 @@ if os.getenv("GAE_ENV", "").startswith("standard"):
     cloud_logger.addHandler(handler)
 else:
     """ Local execution """
+
     app.config["IS_LOCAL"] = True
     app.debug = True
 

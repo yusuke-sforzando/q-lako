@@ -1,7 +1,8 @@
+import os
+
 import pytest
 
 from main import app
-import os
 
 
 @pytest.fixture
