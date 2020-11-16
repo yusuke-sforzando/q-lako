@@ -2,17 +2,20 @@
 
 from amazon.paapi import AmazonAPI
 from amazon.paapi import AmazonException
-import api_keys
+
+import os
 
 
-class SearchAmazonList:
-    """Get a list of Amazon's search results."""
+class FetchAmazon:
+    """Get search results from Amazon."""
 
     def __init__(self, search_word: str, item_count=3):
         """Initialize GetAmazonList."""
         self.amazon_list = []
         self.search_word = search_word
         self.item_count = item_count
+        self.amazon = AmazonAPI(os.getenv("amazon_access_key"), os.getenv("amazon_secret_key"),
+                                os.getenv("amazon_partner_tag"), "JP")
         self.get_search_list()
 
     def get_search_list(self):
@@ -25,10 +28,8 @@ class SearchAmazonList:
             products (list): List of Amazon items (from 1 to 30).
         """
 
-        amazon = AmazonAPI(api_keys.amazon_access_key, api_keys.amazon_secret_key,
-                           api_keys.amazon_partner_tag, "JP")
         try:
-            self.products = amazon.search_items(item_count=self.item_count, keywords=self.search_word)
+            self.products = self.amazon.search_items(item_count=self.item_count, keywords=self.search_word)
             for product in self.products["data"]:
                 title = product.item_info.title.display_value
                 url = product.detail_page_url
