@@ -1,17 +1,11 @@
-import os
-
 from dotenv import load_dotenv
 from flask import Flask
+import os
 
 load_dotenv()
 
 app = Flask(__name__)
 
-airtable_base_id = os.getenv("airtable_base_id")
-airtable_api_key = os.getenv("airtable_api_key")
-amazon_partner_tag = os.getenv("amazon_partner_tag")
-amazon_access_key = os.getenv("amazon_access_key")
-amazon_secret_key = os.getenv("amazon_secret_key")
 
 if os.getenv("GAE_ENV", "").startswith("standard"):
     """ Production in GAE """
@@ -36,5 +30,3 @@ else:
         dashboard.bind(app)
     except ImportError as ie:
         app.logger.warning(f"{ie}")
-
-print(airtable_api_key)
