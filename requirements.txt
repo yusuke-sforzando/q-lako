@@ -6,4 +6,5 @@ google-cloud-logging
 pytest
 pytest-cov
 amazon-paapi5
+dotenv
 python-dotenv
