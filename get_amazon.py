@@ -4,8 +4,6 @@ from amazon.paapi import AmazonAPI
 from amazon.paapi import AmazonException
 import os
 
-from __init__ import app
-
 
 class AmazonGetter:
     """Get search results from Amazon."""
@@ -38,3 +36,8 @@ class AmazonGetter:
             product_list.append({"ASIN": product.asin, "Title": product.title,
                                  "url": product.url, "image_url": product.images.large})
         return product_list
+
+
+if __name__ == "__main__":
+    amazon = AmazonGetter().get_search_list("0123456781011121314", 30)
+    print(amazon)
