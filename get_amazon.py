@@ -56,10 +56,15 @@ class AmazonGetter:
         """
 
         try:
-            product = self.amazon.get_items(item_ids=[asin_code])
+            product = self.amazon.get_products(product_ids=[asin_code])
         except AmazonException as e:
             print("No results found for your request", e)
             return []
+        # try:
+        #     product = self.amazon.get_items(item_ids=[asin_code])
+        # except AmazonException as e:
+        #     print("No results found for your request", e)
+        #     return []
         print(asin_code)
         return product
         # product_list = []
@@ -73,5 +78,6 @@ class AmazonGetter:
 
 if __name__ == "__main__":
     product = AmazonGetter().get_search_detail("B081T9Z4KG")
-    import pprint
-    pprint.pprint(product)
+    # import pprint
+    # pprint.pprint(product)
+    print(product)
