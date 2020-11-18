@@ -31,4 +31,4 @@ def airtable_client():
 
 
 def test_register(airtable_client):
-    airtable_client.register_table(airtable_dictionary)
+    assert not airtable_client.register_table(airtable_dictionary)
