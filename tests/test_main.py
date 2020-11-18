@@ -28,7 +28,7 @@ def test_api_keys():
 def test_search_amazon_with_title():
     """Testing when the equipment name is entered."""
 
-    amazon_search_title = amazon.search_products(keywords="B08BRBFSDR")
+    amazon_search_title = amazon.search_products(keywords="PS5")
     assert amazon_search_title
 
 
