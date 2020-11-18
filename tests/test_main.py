@@ -25,29 +25,35 @@ def test_api_keys():
     assert os.getenv("amazon_secret_key")
 
 
-def test_search_amazon_with_title():
+@pytest.fixture
+def amazon_getter():
+    amazon_getter = amazon_api_client
+    return amazon_getter
+
+
+def test_search_amazon_with_title(amazon_getter):
     """Testing when the equipment name is entered."""
 
-    amazon_search_title = amazon_api_client.search_products(keywords="PS5")
+    amazon_search_title = amazon_getter.search_products(keywords="PS5")
     assert amazon_search_title
 
 
-def test_search_amazon_with_asin():
+def test_search_amazon_with_asin(amazon_getter):
     """Testing when the ASIN code is entered."""
 
-    amazon_search_asin = amazon_api_client.search_products(keywords="B08BRBFSDR")
+    amazon_search_asin = amazon_getter.search_products(keywords="B08BRBFSDR")
     assert amazon_search_asin
 
 
-def test_search_amazon_with_isbn():
+def test_search_amazon_with_isbn(amazon_getter):
     """Testing when the ISBN code is entered."""
 
-    amazon_search_isbn = amazon_api_client.search_products(keywords="9784839966607")
+    amazon_search_isbn = amazon_getter.search_products(keywords="9784839966607")
     assert amazon_search_isbn
 
 
-def test_search_amazon_no_product():
+def test_search_amazon_no_product(amazon_getter):
     """Testing when a non-existent value is entered."""
 
-    search_no_exist = amazon_api_client.search_products(keywords="01234567891011121314")
+    search_no_exist = amazon_getter.search_products(keywords="01234567891011121314")
     assert not search_no_exist
