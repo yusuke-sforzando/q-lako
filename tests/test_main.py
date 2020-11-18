@@ -1,8 +1,9 @@
+import os
+
 import pytest
 
 from __init__ import amazon_api_client
 from main import app
-import os
 
 
 @pytest.fixture
