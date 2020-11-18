@@ -3,7 +3,6 @@
 from flask import render_template
 
 from __init__ import app
-from __init__ import amazon
 
 
 @app.route("/", methods=["GET"])
