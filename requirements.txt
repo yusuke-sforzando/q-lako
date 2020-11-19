@@ -1,10 +1,11 @@
+airtable-python-wrapper
 autopep8
 flake8
 Flask
-#Flask-MonitoringDashboard
 google-cloud-logging
+#Flask-MonitoringDashboard
 pytest
 pytest-cov
 python-amazon-paapi
 python-dotenv
-airtable-python-wrapper
+requests
