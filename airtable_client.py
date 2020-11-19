@@ -1,34 +1,58 @@
 # !/usr/bin/env python3
 
+from configparser import ConfigParser
+from datetime import datetime, timezone, timedelta
 import os
-import requests
 
 from airtable import Airtable
+import requests
+
+
+config = ConfigParser()
+
+config.read("settings.ini", encoding="utf8")
+table_name = config.get("DEFAULT", "table_name")
 
 
 class AirtableClient:
     def __init__(self):
         """Initialize AirtableClient."""
 
-        self.airtable_client = Airtable(os.getenv("airtable_base_id"), "q-lako", os.getenv("airtable_api_key"))
+        self.table_columns = config.get("DEFAULT", "table_columns").split(",")
+        self.airtable_client = Airtable(os.getenv("airtable_base_id"), table_name, os.getenv("airtable_api_key"))
 
-    def register_table(self, airtable_dict: dict):
-        """Register with Airtable.
+    def validate_input_dict(self, unverified_dict):
+        """Validate that the input dictionary holds the proper key names.
+
+        To check if the entered dictionary has a key name that corresponds to the field name of Airtable.
+
+
+        Args:
+            unverified_dict (dict): Dictionary to check if it can be registered to Airtable.
+
+        Returns:
+            bool: Returns True if it held the appropriate key value, False if it did not.
+
+        """
+
+        airtable_field = self.airtable_client.get_all(maxRecords=1)[0]["fields"]
+        return set(airtable_field.keys()) == set(unverified_dict.keys())
+
+    def register_assets(self, registerable_dictionary: dict):
+        """Register to Airtable.
 
         Register to Airtable,taking as an argument a dictionary
         with key names and elements corresponding to the Airtable table.
 
         Args:
-            airtable_dict (dict): A dictionary with key names and elements corresponding to the Airtable table.
+            registerable_dictionary (dict): A dictionary with key names to the Airtable table.
 
         Returns:
-            bool: Returns True if the registration is successful, False if failure.
 
         """
-
+        time_now = datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=+9)))
+        registerable_dictionary["registered_at"] = time_now.isoformat()
         try:
-            self.airtable_client.insert(airtable_dict)
-        except requests.exceptions.HTTPError:
-            return False
-        else:
-            return True
+            return self.airtable_client.insert(registerable_dictionary)
+        except requests.exceptions.HTTPError as e:
+            return e

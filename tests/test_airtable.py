@@ -15,13 +15,13 @@ airtable_dictionary = {
     "manufacture": "ソニー・インタラクティブエンタテインメント",
     "contributor": "None",
     "product_group": "Video game",
-    "publication_date": "2020-10-31",
+    "publication_date": "2020-11-18T23:00+09:00",
     "features": "圧巻のスピード:統合I/O(Integrated I/O)により、カスタムされたCPU・GPU・SSDがその力を発揮。",
     "default_position": "渡邉宅",
     "current_position": "渡邉宅",
     "note": "リモートゲーム大会用に購入。",
-    "registrant_name": "Yusuke",
-    "registered_at": "2020-11-18"
+    "registrant_name": "yusuke-sforzando",
+    "registered_at": "2020-11-20 02:01:01.847113+09:00"
 }
 
 
@@ -31,13 +31,13 @@ def airtable_client():
     return airtable_client
 
 
+def test_register_illegal_dict(airtable_client):
+    """Testing when a non-existent field name is registered."""
+
+    assert not airtable_client.validate_input_dict({"test": "test"})
+
+
 def test_register(airtable_client):
     """Testing whether a dictionary with the proper field names can be registered correctly."""
 
-    assert airtable_client.register_table(airtable_dictionary)
-
-
-def test_register_illegal(airtable_client):
-    """Testing when a non-existent field name is registered."""
-
-    assert not airtable_client.register_table({"test": "test"})
+    assert airtable_client.register_assets(airtable_dictionary)
