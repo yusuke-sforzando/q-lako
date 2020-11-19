@@ -5,4 +5,5 @@ Flask
 google-cloud-logging
 pytest
 pytest-cov
+python-amazon-paapi
 python-dotenv
