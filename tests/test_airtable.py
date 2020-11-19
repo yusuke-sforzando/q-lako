@@ -23,7 +23,6 @@ airtable_dictionary = {
     "registrant_name": "Yusuke",
     "registered_at": "2020-11-18"
 }
-}
 
 
 @ pytest.fixture
