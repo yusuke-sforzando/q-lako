@@ -19,8 +19,8 @@ airtable_dictionary = {
         "Default position": "渡邉宅",
         "Current position": "渡邉宅",
         "note": "PS5",
-        "Registrant name": "Yusuke",
-        "Registered at": "2020-11-18"
+        "Registrant name": "yusuke-sforzando",
+        "Registered at": "2020-11-18T23:00+0900"
 }
 
 
