@@ -3,28 +3,30 @@ import pytest
 from airtable_client import AirtableClient
 
 airtable_dictionary = {
-    "Name": "PlayStation 5 (CFI-1000A01)",
-    "Asset code": "B08GGGBKRQ",
-    "URL": "https://www.amazon.co.jp/ソニー・インタラクティブエンタテインメント-PlayStation-5-CFI-1000A01/dp/B08GGGBKRQ/",
-    "Images":
+    "title": "PlayStation 5 (CFI-1000A01)",
+    "asin": "B08GGGBKRQ",
+    "url": "https://www.amazon.co.jp/ソニー・インタラクティブエンタテインメント-PlayStation-5-CFI-1000A01/dp/B08GGGBKRQ/",
+    "images":
         [
             {
                 "url": "https://images-na.ssl-images-amazon.com/images/I/61YYOeZy9aL._AC_SL1500_.jpg"
             }
         ],
-    "Maker": "ソニー・インタラクティブエンタテインメント",
-    "Category": "Video game",
-    "Released date": "2020-10-31",
-    "Description": "圧巻のスピード:統合I/O(Integrated I/O)により、カスタムされたCPU・GPU・SSDがその力を発揮。",
-        "Default position": "渡邉宅",
-        "Current position": "渡邉宅",
-        "note": "PS5",
-        "Registrant name": "yusuke-sforzando",
-        "Registered at": "2020-11-18T23:00+0900"
+    "manufacture": "ソニー・インタラクティブエンタテインメント",
+    "contributor": "None",
+    "product_group": "Video game",
+    "publication_date": "2020-10-31",
+    "features": "圧巻のスピード:統合I/O(Integrated I/O)により、カスタムされたCPU・GPU・SSDがその力を発揮。",
+    "default_position": "渡邉宅",
+    "current_position": "渡邉宅",
+    "note": "リモートゲーム大会用に購入。",
+    "registrant_name": "Yusuke",
+    "registered_at": "2020-11-18"
+}
 }
 
 
-@pytest.fixture
+@ pytest.fixture
 def airtable_client():
     airtable_client = AirtableClient()
     return airtable_client

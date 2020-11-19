@@ -21,7 +21,7 @@ class AirtableClient:
         Args:
             airtable_dict (dict): A dictionary with key names and elements corresponding to the Airtable table.
 
-        Retruns:
+        Returns:
             bool: Returns True if the registration is successful, False if failure.
 
         """
