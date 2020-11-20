@@ -1,7 +1,7 @@
 import pytest
 
 from airtable_client import AirtableClient
-from airtable_data import Assets
+from assets import Assets
 
 registerable_assets = Assets(
     title="PlayStation 5 (CFI-1000A01)",

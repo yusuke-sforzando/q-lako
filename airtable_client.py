@@ -3,7 +3,7 @@ import os
 
 from __init__ import app, config
 from airtable import Airtable
-from airtable_data import Assets
+from assets import Assets
 import requests
 
 
