@@ -1,17 +1,10 @@
-from configparser import ConfigParser
 from dataclasses import asdict
 import os
 
-from __init__ import app
+from __init__ import app, config
 from airtable import Airtable
 from airtable_data import AirtableDataClass
 import requests
-
-
-config = ConfigParser()
-
-config.read("settings.ini", encoding="utf8")
-table_name = config.get("DEFAULT", "table_name")
 
 
 class AirtableClient:
@@ -19,20 +12,20 @@ class AirtableClient:
     def __init__(self):
         """Initialize AirtableClient."""
 
-        self.airtable_client = Airtable(os.getenv("airtable_base_id"), table_name, os.getenv("airtable_api_key"))
+        self.airtable_client = Airtable(os.getenv("airtable_base_id"),
+                                        config.get("DEFAULT", "table_name"), os.getenv("airtable_api_key"))
 
     def register_assets(self, register_assets: AirtableDataClass):
         """Register to Airtable.
 
-        Register to Airtable, taking as an argument AirTable class
+        Register to Airtable, taking as an argument register_assets
         with key names corresponding to the Airtable table.
 
         Args:
-            AirTable (AirTable class): AirTable class with the Airtable field name.
+            register_assets (AirtableDataClass class): AirTable class with the Airtable field name.
 
         Returns:
-            registerable_dictionary (dict): If the registration is successful,
-                                            the registered dictionary will be returned.
+            Dictionaries (dict): Dictionary data returned from Airtable.
 
         """
         registerable_dictionary = asdict(register_assets)

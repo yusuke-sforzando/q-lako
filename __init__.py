@@ -7,13 +7,12 @@ from dotenv import load_dotenv
 from flask import Flask
 
 config = ConfigParser()
+config.read("settings.ini", encoding="utf8")
+table_name = config.get("DEFAULT", "table_name")
+
 load_dotenv(verbose=True)
-
 app = Flask(__name__)
-
 time_now = datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=+9))).isoformat()
-
-
 amazon_api_client = AmazonAPI(os.getenv("amazon_access_key"),
                               os.getenv("amazon_secret_key"),
                               os.getenv("amazon_partner_tag"),
