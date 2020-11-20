@@ -33,4 +33,4 @@ class AirtableClient:
             return self.airtable_client.insert(asdict(register_asset))
         except requests.exceptions.HTTPError as he:
             app.logger.error(he)
-            return
+            raise he
