@@ -3,7 +3,7 @@ from __init__ import time_now
 
 
 @dataclass
-class AirtableDataClass:
+class Assets:
 
     title: str
     qlako_id: str = field(init=False)

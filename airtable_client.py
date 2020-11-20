@@ -3,7 +3,7 @@ import os
 
 from __init__ import app, config
 from airtable import Airtable
-from airtable_data import AirtableDataClass
+from airtable_data import Assets
 import requests
 
 
@@ -15,7 +15,7 @@ class AirtableClient:
         self.airtable_client = Airtable(os.getenv("airtable_base_id"),
                                         config.get("DEFAULT", "table_name"), os.getenv("airtable_api_key"))
 
-    def register_assets(self, register_assets: AirtableDataClass):
+    def register_assets(self, register_assets: Assets):
         """Register to Airtable.
 
         Register to Airtable, taking as an argument register_assets

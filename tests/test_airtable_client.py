@@ -1,9 +1,9 @@
 import pytest
 
 from airtable_client import AirtableClient
-from airtable_data import AirtableDataClass
+from airtable_data import Assets
 
-registerable_assets = AirtableDataClass(
+registerable_assets = Assets(
     title="PlayStation 5 (CFI-1000A01)",
     asin="B08GGGBKRQ",
     url="https://www.amazon.co.jp/ソニー・インタラクティブエンタテインメント-PlayStation-5-CFI-1000A01/dp/B08GGGBKRQ/",
