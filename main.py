@@ -4,7 +4,7 @@ from flask import render_template, request, session
 
 from __init__ import app
 
-app.secret_key = "secret_key"
+app.secret_key = 'app secret key'
 
 
 @app.route("/", methods=["GET", "POST"])
