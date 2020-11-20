@@ -6,7 +6,7 @@ from __init__ import time_now
 class Asset:
 
     title: str
-    qlako_id: str = field(init=False)
+    asset_id: str = field(init=False)
     asin: str
     url: str
     images: list
@@ -22,5 +22,5 @@ class Asset:
     registered_at: str = field(init=False)
 
     def __post_init__(self):
-        self.qlako_id = "0"
+        self.asset_id = "0"
         self.registered_at = time_now
