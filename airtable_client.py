@@ -1,10 +1,10 @@
 from configparser import ConfigParser
-from dataclasses import dataclass, asdict
-from datetime import datetime, timezone, timedelta
+from dataclasses import asdict
 import os
 
 from __init__ import app
 from airtable import Airtable
+from airtable_data import AirtableDataClass
 import requests
 
 
@@ -14,25 +14,6 @@ config.read("settings.ini", encoding="utf8")
 table_name = config.get("DEFAULT", "table_name")
 
 
-@dataclass
-class AirTable:
-
-    title: str
-    asin: str
-    url: str
-    images: list
-    manufacture: str
-    contributor: str
-    product_group: str
-    publication_date: str
-    features: str
-    default_position: str
-    current_position: str
-    note: str
-    registrant_name: str
-    registered_at: str
-
-
 class AirtableClient:
 
     def __init__(self):
@@ -40,7 +21,7 @@ class AirtableClient:
 
         self.airtable_client = Airtable(os.getenv("airtable_base_id"), table_name, os.getenv("airtable_api_key"))
 
-    def register_assets(self, AirTable):
+    def register_assets(self, register_assets: AirtableDataClass):
         """Register to Airtable.
 
         Register to Airtable, taking as an argument AirTable class
@@ -54,10 +35,9 @@ class AirtableClient:
                                             the registered dictionary will be returned.
 
         """
-        registerable_dictionary = asdict(AirTable)
-        time_now = datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=+9)))
-        registerable_dictionary["registered_at"] = time_now.isoformat()
+        registerable_dictionary = asdict(register_assets)
         try:
             return self.airtable_client.insert(registerable_dictionary)
         except requests.exceptions.HTTPError as he:
             app.logger.error(he)
+            return
