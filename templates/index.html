@@ -1,6 +1,10 @@
 {% extends "_base.html" %}
 {% block main %}
-<p>書籍・備品の登録</p>
-<p>キーワード・ISBNコード・ASINコードのいずれかを入力</p>
-<input type="text" id="keyword" name="input_keyword" placeholder="https://amazon.com">
+<p>{{ title }}</p>
+<p>{{ sub_title }}</p>
+<form action="/" method="POST">
+  <input type="text" name="input_keyword" placeholder="PlayStation 5">
+  <button type="submit" value="検索">検索</button>
+</form>
+<p>{{ keyword }}</p>
 {% endblock %}
