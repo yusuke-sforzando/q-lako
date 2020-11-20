@@ -15,7 +15,7 @@ class AirtableClient:
         self.airtable_client = Airtable(os.getenv("airtable_base_id"),
                                         config.get("DEFAULT", "table_name"), os.getenv("airtable_api_key"))
 
-    def register_asset(self, register_asset: Asset):
+    def register_asset(self, asset: Asset):
         """Register to Airtable.
 
         Register to Airtable, taking as an argument register_assets
