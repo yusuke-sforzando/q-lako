@@ -28,9 +28,9 @@ class AirtableClient:
             Dictionaries (dict): Dictionary data returned from Airtable.
 
         """
-        registerable_dictionary = asdict(register_assets)
+
         try:
-            return self.airtable_client.insert(registerable_dictionary)
+            return self.airtable_client.insert(asdict(register_assets))
         except requests.exceptions.HTTPError as he:
             app.logger.error(he)
             return
