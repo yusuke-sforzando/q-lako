@@ -1,5 +1,3 @@
-# !/usr/bin/env python3
-
 from configparser import ConfigParser
 from datetime import datetime, timezone, timedelta
 import os
