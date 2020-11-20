@@ -1,5 +1,4 @@
 from configparser import ConfigParser
-from datetime import datetime, timezone, timedelta
 import os
 
 from amazon.paapi import AmazonAPI
@@ -14,7 +13,6 @@ load_dotenv(verbose=True)
 
 app = Flask(__name__)
 
-time_now = datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=+9))).isoformat()
 
 amazon_api_client = AmazonAPI(os.getenv("amazon_access_key"),
                               os.getenv("amazon_secret_key"),
