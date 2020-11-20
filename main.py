@@ -4,8 +4,7 @@ from flask import render_template, request, session
 
 from __init__ import app
 
-import os
-app.secret_key = os.getenv("airtable_api_key")
+app.secret_key = "secret_key"
 
 
 @app.route("/", methods=["GET", "POST"])
