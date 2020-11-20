@@ -15,14 +15,13 @@ class AirtableClient:
         self.airtable_client = Airtable(os.getenv("airtable_base_id"),
                                         config.get("DEFAULT", "table_name"), os.getenv("airtable_api_key"))
 
-    def register_asset(self, register_asset: Asset):
+    def register_asset(self, asset: Asset):
         """Register to Airtable.
 
-        Register to Airtable, taking as an argument register_assets
-        with key names corresponding to the Airtable table.
+        Register a dictionary with the appropriate key and value to Airtable.
 
         Args:
-            register_assets (AirtableDataClass class): AirTable class with the Airtable field name.
+            asset (Asset): Asset dataclass with field name of Assets table on AirTable.
 
         Returns:
             Dictionaries (dict): Dictionary data returned from Airtable.
@@ -30,7 +29,7 @@ class AirtableClient:
         """
 
         try:
-            return self.airtable_client.insert(asdict(register_asset))
+            return self.airtable_client.insert(asdict(asset))
         except requests.exceptions.HTTPError as he:
             app.logger.error(he)
             return
