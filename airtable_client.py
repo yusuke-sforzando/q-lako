@@ -1,7 +1,9 @@
 from configparser import ConfigParser
+from dataclasses import dataclass, asdict
 from datetime import datetime, timezone, timedelta
 import os
 
+from __init__ import app
 from airtable import Airtable
 import requests
 
@@ -12,34 +14,33 @@ config.read("settings.ini", encoding="utf8")
 table_name = config.get("DEFAULT", "table_name")
 
 
+@dataclass
+class AirTable:
+
+    title: str
+    asin: str
+    url: str
+    images: list
+    manufacture: str
+    contributor: str
+    product_group: str
+    publication_date: str
+    features: str
+    default_position: str
+    current_position: str
+    note: str
+    registrant_name: str
+    registered_at: str
+
+
 class AirtableClient:
+
     def __init__(self):
         """Initialize AirtableClient."""
 
-        self.table_columns = config.get("DEFAULT", "table_columns").split(",")
         self.airtable_client = Airtable(os.getenv("airtable_base_id"), table_name, os.getenv("airtable_api_key"))
 
-    def validate_input_dict(self, unverified_dict):
-        """Validate that the input dictionary holds the proper key names.
-
-        To check if the entered dictionary has a key name that corresponds to the field name of Airtable.
-        Dictionaries to be registered in airtable must have the following key values.
-
-        Dictionary keys: title, asin, images, url, manufacture, contributor, product_group, publication_date,
-                         features, default_position, current_position, note, registrant_name, registered_at
-
-        Args:
-            unverified_dict (dict): Dictionary to check if it can be registered to Airtable.
-
-        Returns:
-            bool: Returns True if it held the appropriate key value, False if it did not.
-
-        """
-
-        airtable_field = self.airtable_client.get_all(maxRecords=1)[0]["fields"]
-        return set(airtable_field.keys()) == set(unverified_dict.keys())
-
-    def register_assets(self, registerable_dictionary: dict):
+    def register_assets(self, AirTable):
         """Register to Airtable.
 
         Register to Airtable, taking as an argument a dictionary
@@ -51,14 +52,12 @@ class AirtableClient:
         Returns:
             registerable_dictionary (dict): If the registration is successful,
                                             the registered dictionary will be returned.
-            HTTPError responce (str): All exceptions inherit from requests.exceptions.
-                                      RequestException and are raised explicitly.
 
         """
-
+        registerable_dictionary = asdict(AirTable)
         time_now = datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=+9)))
         registerable_dictionary["registered_at"] = time_now.isoformat()
         try:
             return self.airtable_client.insert(registerable_dictionary)
         except requests.exceptions.HTTPError as he:
-            return he
+            app.logger.error(he)
