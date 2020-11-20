@@ -25,6 +25,7 @@ class AirtableClient:
         """Validate that the input dictionary holds the proper key names.
 
         To check if the entered dictionary has a key name that corresponds to the field name of Airtable.
+        Dictionaries to be registered in airtable must have the following key values.
 
 
         Args:
@@ -48,11 +49,15 @@ class AirtableClient:
             registerable_dictionary (dict): A dictionary with key names to the Airtable table.
 
         Returns:
+            registerable_dictionary (dict): If the registration is successful,
+                                            the registered dictionary will be returned.
+            HTTPError responce (str): All exceptions inherit from requests.exceptions.
+                                      RequestException and are raised explicitly.
 
         """
         time_now = datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=+9)))
         registerable_dictionary["registered_at"] = time_now.isoformat()
         try:
             return self.airtable_client.insert(registerable_dictionary)
-        except requests.exceptions.HTTPError as e:
-            return e
+        except requests.exceptions.HTTPError as he:
+            return he
