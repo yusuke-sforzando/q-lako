@@ -1,9 +1,9 @@
 import pytest
 
 from airtable_client import AirtableClient
-from assets import Assets
+from asset import Asset
 
-registerable_assets = Assets(
+registerable_asset = Asset(
     title="PlayStation 5 (CFI-1000A01)",
     asin="B08GGGBKRQ",
     url="https://www.amazon.co.jp/ソニー・インタラクティブエンタテインメント-PlayStation-5-CFI-1000A01/dp/B08GGGBKRQ/",
@@ -28,4 +28,4 @@ def airtable_client():
 def test_register(airtable_client):
     """Testing whether a dictionary with the proper field names can be registered correctly."""
 
-    assert airtable_client.register_assets(registerable_assets)
+    assert airtable_client.register_asset(registerable_asset)

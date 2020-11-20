@@ -3,7 +3,7 @@ import os
 
 from __init__ import app, config
 from airtable import Airtable
-from assets import Assets
+from asset import Asset
 import requests
 
 
@@ -15,7 +15,7 @@ class AirtableClient:
         self.airtable_client = Airtable(os.getenv("airtable_base_id"),
                                         config.get("DEFAULT", "table_name"), os.getenv("airtable_api_key"))
 
-    def register_assets(self, register_assets: Assets):
+    def register_asset(self, register_asset: Asset):
         """Register to Airtable.
 
         Register to Airtable, taking as an argument register_assets
@@ -30,7 +30,7 @@ class AirtableClient:
         """
 
         try:
-            return self.airtable_client.insert(asdict(register_assets))
+            return self.airtable_client.insert(asdict(register_asset))
         except requests.exceptions.HTTPError as he:
             app.logger.error(he)
             return
