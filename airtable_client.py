@@ -43,11 +43,11 @@ class AirtableClient:
     def register_assets(self, AirTable):
         """Register to Airtable.
 
-        Register to Airtable, taking as an argument a dictionary
-        with key names and elements corresponding to the Airtable table.
+        Register to Airtable, taking as an argument AirTable class
+        with key names corresponding to the Airtable table.
 
         Args:
-            registerable_dictionary (dict): A dictionary with key names to the Airtable table.
+            AirTable (AirTable class): AirTable class with the Airtable field name.
 
         Returns:
             registerable_dictionary (dict): If the registration is successful,
