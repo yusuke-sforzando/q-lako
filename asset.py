@@ -4,7 +4,6 @@ from datetime import datetime, timedelta, timezone
 
 @dataclass
 class Asset:
-
     title: str
     asset_id: str = field(init=False)
     asin: str

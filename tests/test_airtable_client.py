@@ -19,7 +19,7 @@ registerable_asset = Asset(
     registrant_name="yusuke-sforzando")
 
 
-@ pytest.fixture
+@pytest.fixture
 def airtable_client():
     airtable_client = AirtableClient()
     return airtable_client

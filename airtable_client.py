@@ -1,10 +1,11 @@
-from dataclasses import asdict
 import os
+from dataclasses import asdict
+
+import requests
+from airtable import Airtable
 
 from __init__ import app, config
-from airtable import Airtable
 from asset import Asset
-import requests
 
 
 class AirtableClient:
@@ -25,7 +26,6 @@ class AirtableClient:
 
         Returns:
             Dictionary data returned from Airtable.
-
         """
 
         try:
