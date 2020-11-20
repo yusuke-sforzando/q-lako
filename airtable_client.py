@@ -22,7 +22,7 @@ class AirtableClient:
         with key names corresponding to the Airtable table.
 
         Args:
-            register_assets (AirtableDataClass class): AirTable class with the Airtable field name.
+            asset (Asset): Asset dataclass with field name of Assets table on AirTable.
 
         Returns:
             Dictionaries (dict): Dictionary data returned from Airtable.
