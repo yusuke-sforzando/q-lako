@@ -25,6 +25,8 @@ class AirtableClient:
         To check if the entered dictionary has a key name that corresponds to the field name of Airtable.
         Dictionaries to be registered in airtable must have the following key values.
 
+        Dictionary keys: title, asin, images, url, manufacture, contributor, product_group, publication_date,
+                         features, default_position, current_position, note, registrant_name, registered_at
 
         Args:
             unverified_dict (dict): Dictionary to check if it can be registered to Airtable.
@@ -40,7 +42,7 @@ class AirtableClient:
     def register_assets(self, registerable_dictionary: dict):
         """Register to Airtable.
 
-        Register to Airtable,taking as an argument a dictionary
+        Register to Airtable, taking as an argument a dictionary
         with key names and elements corresponding to the Airtable table.
 
         Args:
@@ -53,6 +55,7 @@ class AirtableClient:
                                       RequestException and are raised explicitly.
 
         """
+
         time_now = datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=+9)))
         registerable_dictionary["registered_at"] = time_now.isoformat()
         try:
