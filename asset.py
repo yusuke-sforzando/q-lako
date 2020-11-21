@@ -1,10 +1,9 @@
 from dataclasses import dataclass, field
-from __init__ import time_now
+from datetime import datetime, timedelta, timezone
 
 
 @dataclass
 class Asset:
-
     title: str
     asset_id: str = field(init=False)
     asin: str
@@ -23,4 +22,4 @@ class Asset:
 
     def __post_init__(self):
         self.asset_id = "0"
-        self.registered_at = time_now
+        self.registered_at = datetime.now(timezone(timedelta(hours=9))).isoformat()

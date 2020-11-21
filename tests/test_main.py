@@ -15,24 +15,21 @@ def test_GET_index(test_client):
     assert "書籍・備品の登録", "キーワード、ISBNコード、ASINコードのいずれかを入力してください" in response.data.decode('utf-8')
 
 
-def test_GET_search_result_correct_query(test_client):
-    response = test_client.get("/search-result?input_keyword=kindle")
+def test_GET_search_with_correct_query(test_client):
+    response = test_client.get("/search?query=kindle")
     assert b"kindle" in response.data
 
 
-def test_GET_search_result_incorrect_query(test_client):
-    response = test_client.get("/search-result?unexpected_query=kindle")
-    print(response.data)
-    assert b"kindle" not in response.data
-
-
-def test_GET_search_result_query_not_inputted(test_client):
-    response = test_client.get("/search-result?input_keyword=")
-    print(response.data.decode('utf-8'))
+def test_GET_search_with_incorrect_query(test_client):
+    response = test_client.get("/search?unexpected_query=kindle")
     assert "TOPページに戻ってキーワードを入力してください" in response.data.decode('utf-8')
 
 
-def test_GET_search_result_direct_access(test_client):
-    response = test_client.get("/search-result?input_keyword=")
-    print(response.data.decode('utf-8'))
+def test_GET_search_with_not_inputted_query(test_client):
+    response = test_client.get("/search?query=")
+    assert "TOPページに戻ってキーワードを入力してください" in response.data.decode('utf-8')
+
+
+def test_GET_search_direct_access(test_client):
+    response = test_client.get("/search")
     assert "TOPページに戻ってキーワードを入力してください" in response.data.decode('utf-8')
