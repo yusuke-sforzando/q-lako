@@ -16,16 +16,16 @@ def index():
     return render_template(template_filename, **context_dict)
 
 
-@app.route("/search", methods=["GET"])
+@app.route("/search-result", methods=["GET"])
 def search():
-    app.logger.info("search(): GET /search")
+    app.logger.info("search(): GET /search-result")
 
     keyword = "PlayStation5"
     products_list = []
     search_products_result = amazon_api_client.search_products(keywords=keyword)
     for product in search_products_result:
         products_list.append({"asin": product.asin, "title": product.title, "image_url": product.images.large})
-    return render_template("search.html", keyword=keyword, products_list=products_list)
+    return render_template("search-result.html", keyword=keyword, products_list=products_list)
 
 
 if __name__ == "__main__":
