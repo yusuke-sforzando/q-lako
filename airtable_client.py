@@ -1,7 +1,7 @@
 from dataclasses import asdict
 import os
 
-from __init__ import app, config
+from __init__ import app
 from airtable import Airtable
 from asset import Asset
 import requests
@@ -13,7 +13,7 @@ class AirtableClient:
         """Initialize AirtableClient."""
 
         self.airtable_client = Airtable(os.getenv("airtable_base_id"),
-                                        config.get("DEFAULT", "table_name"), os.getenv("airtable_api_key"))
+                                        app.config["TABLE_NAME"], os.getenv("airtable_api_key"))
 
     def register_asset(self, asset: Asset):
         """Register to Airtable.
@@ -24,7 +24,7 @@ class AirtableClient:
             asset (Asset): Asset dataclass with field name of Assets table on AirTable.
 
         Returns:
-            Dictionary data returned from Airtable.
+            Dictionary registered in Airtable.
 
         """
 

@@ -8,11 +8,10 @@ from flask import Flask
 config = ConfigParser()
 config.read("settings.ini", encoding="utf8")
 
-
 load_dotenv(verbose=True)
 
 app = Flask(__name__)
-
+app.config["TABLE_NAME"] = config.get("DEFAULT", "table_name")
 
 amazon_api_client = AmazonAPI(os.getenv("amazon_access_key"),
                               os.getenv("amazon_secret_key"),
