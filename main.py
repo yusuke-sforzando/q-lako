@@ -17,13 +17,12 @@ def search_result_direct_access():
     return "TOPページに戻ってキーワードを入力してください"
 
 
-@ app.route("/search-result", methods=["GET"])
+@app.route("/search-result", methods=["GET"])
 def search_result():
     app.logger.info("search_result(): GET /")
-    template_filename = "search-result.html"
     keyword = request.args.get("input_keyword", "")
     if keyword:
-        return render_template(template_filename, keyword=keyword)
+        return render_template("search-result.html", keyword=keyword)
     else:
         return "TOPページに戻ってキーワードを入力してください"
 

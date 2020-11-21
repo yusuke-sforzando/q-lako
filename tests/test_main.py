@@ -33,6 +33,6 @@ def test_GET_search_result_query_not_inputted(test_client):
 
 
 def test_GET_search_result_direct_access(test_client):
-    response = test_client.get("/search-result")
+    response = test_client.get("/search-result?input_keyword=")
     print(response.data.decode('utf-8'))
     assert "TOPページに戻ってキーワードを入力してください" in response.data.decode('utf-8')
