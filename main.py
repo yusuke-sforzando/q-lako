@@ -16,13 +16,13 @@ def search_result():
     app.logger.info("search_result(): GET /")
     keyword = request.args.get("input_keyword", "")
     context_dict = {
-        "keyword": request.args.get("input_keyword", ""),
-        "message": "TOPページに戻ってキーワードを入力してください"
+        "keyword": keyword
     }
     if keyword:
         return render_template("search-result.html", **context_dict)
     else:
-        return context_dict["message"]
+        context_dict["message"] = "TOPページに戻ってキーワードを入力してください"
+        return render_template("search-result.html", **context_dict)
 
 
 if __name__ == "__main__":
