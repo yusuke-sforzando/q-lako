@@ -22,4 +22,4 @@ class Asset:
 
     def __post_init__(self):
         self.asset_id = "0"
-        self.registered_at = datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=+9))).isoformat()
+        self.registered_at = datetime.now(timezone(timedelta(hours=9))).isoformat()
