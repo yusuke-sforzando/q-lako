@@ -4,13 +4,15 @@
     "asdict",
     "astimezone",
     "dotenv",
+    "GGGBKRQ",
     "key",
     "lako",
+    "paapi",
     "pytest",
     "q-lako",
     "qlako",
-    "yubi",
-    "yubi key"
+    "yubi key",
+    "yubi"
   ],
   "python.pythonPath": "./venv/bin/python3",
   "python.formatting.provider": "autopep8"

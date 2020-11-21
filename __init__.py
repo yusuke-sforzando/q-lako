@@ -7,7 +7,6 @@ from flask import Flask
 
 config = ConfigParser()
 config.read("settings.ini", encoding="utf8")
-
 load_dotenv(verbose=True)
 
 app = Flask(__name__)
