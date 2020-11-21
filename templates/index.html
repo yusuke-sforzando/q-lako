@@ -1,7 +1,7 @@
 {% extends "_base.html" %}
 {% block main %}
 <p>備品・書籍の登録</p>
-<label>キーワード、ISBNコード、ASINコードのいずれかを入力してください</label>
+<label for="input_keyword">キーワード、ISBNコード、ASINコードのいずれかを入力してください</label>
 <form action="/search-result" method="GET">
   <input type="text" name="input_keyword" placeholder="PlayStation 5">
   <input type="submit" value="検索" />
