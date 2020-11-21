@@ -11,18 +11,17 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/search-result", methods=["GET"])
-def search_result():
-    app.logger.info("search_result(): GET /")
-    keyword = request.args.get("input_keyword", "")
+@app.route("/search", methods=["GET"])
+def search():
+    app.logger.info("search(): GET /search")
+    keyword = request.args.get("query", "")
     context_dict = {
         "keyword": keyword
     }
-    if keyword:
-        return render_template("search-result.html", **context_dict)
-    else:
+    if not keyword:
         context_dict["message"] = "TOPページに戻ってキーワードを入力してください"
-        return render_template("search-result.html", **context_dict)
+
+    return render_template("search.html", **context_dict)
 
 
 if __name__ == "__main__":
