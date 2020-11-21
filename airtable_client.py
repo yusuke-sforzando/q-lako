@@ -26,7 +26,7 @@ class AirtableClient:
             asset (Asset): Asset dataclass with field name of Assets table on AirTable.
 
         Returns:
-            Dictionary data returned from Airtable.
+            Dictionary registered in Airtable.
         """
 
         try:
