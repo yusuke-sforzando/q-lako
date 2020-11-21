@@ -1,10 +1,9 @@
 {% extends "_base.html" %}
 {% block main %}
-<p>{{ title }}</p>
-<p>{{ sub_title }}</p>
-<form action="/" method="POST">
+<p>備品・書籍の登録</p>
+<p>キーワード、ISBNコード、ASINコードのいずれかを入力してください</p>
+<form action="/search-result" method="GET">
   <input type="text" name="input_keyword" placeholder="PlayStation 5">
-  <button type="submit" value="検索">検索</button>
+  <input type="submit" value="検索" />
 </form>
-<p>{{ keyword }}</p>
 {% endblock %}
