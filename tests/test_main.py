@@ -12,7 +12,8 @@ def test_client():
 def test_GET_index(test_client):
     response = test_client.get("/")
     assert response.status_code == 200
-    assert "書籍・備品の登録", "キーワード、ISBNコード、ASINコードのいずれかを入力してください" in response.data.decode('utf-8')
+    assert "備品・書籍の登録" in response.data.decode('utf-8')
+    assert "キーワード、ISBNコード、ASINコードのいずれかを入力してください" in response.data.decode('utf-8')
 
 
 def test_GET_search_with_correct_query(test_client):
