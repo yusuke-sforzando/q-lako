@@ -1,0 +1,17 @@
+{% extends "_base.html" %}
+{% block main %}
+
+{% for product in products_list %}
+<div>
+  <image src="{{ product.image_url }}" />
+  <h2>{{ product.title }}</h2>
+  <form action="/search" method="get">
+    <div>
+      <input type="hidden" name="asin" value="{{ product.asin }}">
+      <button>選択する</button>
+    </div>
+  </form>
+</div>
+{%- endfor %}
+
+{% endblock %}

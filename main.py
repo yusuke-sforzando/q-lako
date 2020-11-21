@@ -11,24 +11,18 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/search-result?input_keyword=")
-def search_result_direct_access():
-    app.logger.info("search_result_direct_access(): GET /")
-    return "TOPページに戻ってキーワードを入力してください"
+@app.route("/search", methods=["GET"])
+def search():
+    app.logger.info("search(): GET /search")
 
-
-@app.route("/search-result", methods=["GET"])
-def search_result():
-    app.logger.info("search_result(): GET /")
-
-    keyword = request.args.get("input_keyword", "")
+    keyword = "PS5"
     products_list = []
     search_products_result = amazon_api_client.search_products(keywords=keyword)
-    for asset in search_products_result:
-        products_list.append({"asin": asset.asin, "title": asset.title, "image_url": asset.images.large})
+    for product in search_products_result:
+        products_list.append({"asin": product.asin, "title": product.title, "image_url": product.images.large})
     print(products_list)
     if keyword:
-        return render_template("search-result.html", keyword=keyword)
+        return render_template("search.html", keyword=keyword, products_list=products_list)
     else:
         return "TOPページに戻ってキーワードを入力してください"
 
