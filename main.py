@@ -1,30 +1,31 @@
 # !/usr/bin/env python3
 
-from flask import render_template, request
+from flask import render_template
 
 from __init__ import app, amazon_api_client
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET"])
 def index():
     app.logger.info("index(): GET /")
-    return render_template("index.html")
+    template_filename = "index.html"
+    context_dict = {
+        "subtitle": template_filename,
+        "message": f"This is {template_filename}."
+    }
+    return render_template(template_filename, **context_dict)
 
 
 @app.route("/search", methods=["GET"])
 def search():
     app.logger.info("search(): GET /search")
 
-    keyword = "PS5"
+    keyword = "PlayStation5"
     products_list = []
     search_products_result = amazon_api_client.search_products(keywords=keyword)
     for product in search_products_result:
         products_list.append({"asin": product.asin, "title": product.title, "image_url": product.images.large})
-    print(products_list)
-    if keyword:
-        return render_template("search.html", keyword=keyword, products_list=products_list)
-    else:
-        return "TOPページに戻ってキーワードを入力してください"
+    return render_template("search.html", keyword=keyword, products_list=products_list)
 
 
 if __name__ == "__main__":
