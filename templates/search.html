@@ -6,14 +6,12 @@
 </label>
 {% for product in products_list %}
 <div>
-  <image src="{{ product.image_url }}" />
+  <image src="{{ product.image_url }}" alt="image of {{ product.title }}" />
   <h2>{{ product.title }}</h2>
   <form action="/registration-details" method="get">
     <div>
-      <label>
-        <input type="hidden" name="asin" value="{{ product.asin }}">
-        <button>選択する</button>
-      </label>
+      <input type="hidden" name="asin" value="{{ product.asin }}">
+      <button>選択する</button>
     </div>
   </form>
 </div>

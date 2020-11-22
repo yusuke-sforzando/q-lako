@@ -19,13 +19,16 @@ def index():
 @app.route("/search", methods=["GET"])
 def search():
     app.logger.info("search(): GET /search")
-
-    keyword = "サーカスTC"
     products_list = []
+    keyword = request.args.get("query", "")
     search_products_result = amazon_api_client.search_products(keywords=keyword)
     for product in search_products_result:
         products_list.append({"asin": product.asin, "title": product.title, "image_url": product.images.large})
-    return render_template("search.html", keyword=keyword, products_list=products_list)
+    context_dict = {
+        "keyword": keyword,
+        "products_list": products_list
+    }
+    return render_template("search.html", **context_dict)
 
 
 @app.route("/registration-details", methods=["GET"])
