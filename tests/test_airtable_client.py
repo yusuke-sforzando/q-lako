@@ -29,3 +29,9 @@ def test_register(airtable_client):
     """Testing whether a dictionary with the proper field names can be registered correctly."""
 
     assert airtable_client.register_asset(registerable_asset)
+
+
+def test_register_non_existent_key(airtable_client):
+    """Testing an instance of the Airtable date class is an argument."""
+
+    assert "asset should be called on asset dataclass instances" in airtable_client.register_asset({"test": "test"})
