@@ -1,0 +1,39 @@
+{% extends "_base.html" %}
+{% block main %}
+<h1>登録内容詳細</h1>
+<div>
+  <image src="{{ product.images.large }}" alt="image of {{ product.title }}" />
+  <h2>{{ product.title }}</h2>
+  <form action="/registration" method="post">
+    <p>URL: {{ product.url }}</p>
+    <p>ASINコード: {{ product.asin }}</p>
+    <p>製造元: {{ product.info.manufacturer }}</p>
+    <p>著者: {{ contributors }}</p>
+    <p>発売日: {{ product.info.publication_date }}</p>
+    <p>カテゴリ: {{ product.info.product_group }}</p>
+    <p>保管場所: </p>
+    <select name=”registrants”>
+      <option value=”sforzando”>sforzando 川崎</option>
+      <option value=”yusuke”>yusuke-sforzando</option>
+      <option value=”tomoya”>tomoya-sforzando</option>
+      <option value=”shin”>shin-sforzando</option>
+    </select>
+    <p>登録者:</p>
+    <select name=”registrants”>
+      <option value=”yusuke”>yusuke-sforzando</option>
+      <option value=”tomoya”>tomoya-sforzando</option>
+      <option value=”shin”>shin-sforzando</option>
+    </select>
+    <p>登録日: {{ product.registered_at }}</p>
+    <p>個数: </p>
+    <div></div>
+    <input type="int" name="quantity" id="quantity" placeholder="1">
+    <div>
+      <p>備考:</p><input type="int" name="quantity" id="quantity" placeholder={{ product.note }}>
+    </div>
+    説明:{{ product.product.features }}
+
+    <button>登録する</button>
+  </form>
+</div>
+{% endblock %}

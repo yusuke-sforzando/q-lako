@@ -16,21 +16,21 @@ def index():
     return render_template(template_filename, **context_dict)
 
 
-@app.route("/registration-details", methods=["GET"])
-def registration_details():
-    app.logger.info("search(): GET /registration-details")
-    template_filename = "registration-details.html"
-    asin = request.args.get("query", "")
+@app.route("/registration", methods=["GET", "POST"])
+def registration():
+    app.logger.info("search(): POST /registration")
+    template_filename = "registration.html"
+    asin = "B07XB5WX89"
     product = amazon_api_client.search_products(keywords=asin)[0]
+    contributors = product.info.contributors
     context_dict = {
         "subtitle": template_filename,
+        "asin": asin,
         "product": product,
-        "template_file": template_filename,
-        "contributors": ""
-    }
-    for contributor in product.info.contributors:
-        print(contributor)
-    return render_template("registration-details.html", **context_dict)
+        "template_file": template_filename}
+    if contributors:
+        context_dict["contributors"] = [contributor.name for contributor in contributors]
+    return render_template("registration.html", **context_dict)
 
 
 if __name__ == "__main__":
