@@ -26,11 +26,13 @@ def registration_details():
         "subtitle": template_filename,
         "product": product,
         "template_file": template_filename,
-        "contributors": [contributor for contributor in product.info.contributors]
+        "contributors": ""
     }
-    print(context_dict["contributors"])
+    for contributor in product.info.contributors:
+        print(contributor)
     return render_template("registration-details.html", **context_dict)
 
 
 if __name__ == "__main__":
+
     app.run(host="0.0.0.0", port=8888)
