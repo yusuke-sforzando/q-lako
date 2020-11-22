@@ -14,7 +14,9 @@
 <body>
   <div class="container mx-auto flex flex-col h-screen">
     {% include "_header.html" %}
+    {% if message %}
     <p class="text-center">TODO: Show "{{ message }}" as a flash message.</p>
+    {% endif %}
     <div class="flex-1 overflow-y-auto">
       {% block main %}
       {% endblock %}
