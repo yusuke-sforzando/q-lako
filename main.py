@@ -25,8 +25,10 @@ def registration_details():
     context_dict = {
         "subtitle": template_filename,
         "product": product,
-        "template_file": template_filename
+        "template_file": template_filename,
+        "contributors": [contributor for contributor in product.info.contributors]
     }
+    print(context_dict["contributors"])
     return render_template("registration-details.html", **context_dict)
 
 
