@@ -1,0 +1,16 @@
+:root {
+  --theme-color-gray: #393e46;
+  --theme-color-blue: #4caaba;
+}
+
+.theme-color-blue {
+  color: var(--theme-color-blue);
+}
+
+.theme-color-gray {
+  color: var(--theme-color-gray);
+}
+
+.theme-bg-color-gray {
+  background-color: var(--theme-color-gray);
+}
