@@ -38,3 +38,12 @@ else:
         dashboard.bind(app)
     except ImportError as ie:
         app.logger.warning(f"{ie}")
+
+# Read theme color from css file
+try:
+    with app.open_resource("static/css/common.css", "r") as f:
+        theme_color = [line[-9:-2] for line in f if "--theme-color-gray:" in line]
+except FileNotFoundError as fe:
+    app.logger.error(fe)
+
+app.config["THEME_COLOR"] = theme_color[0] if theme_color else "#fafafa"
