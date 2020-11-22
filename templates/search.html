@@ -8,7 +8,7 @@
 <div>
   <image src="{{ product.image_url }}" alt="image of {{ product.title }}" />
   <h2>{{ product.title }}</h2>
-  <form action="/registration-details" method="get">
+  <form action="/registration" method="get">
     <div>
       <input type="hidden" name="asin" value="{{ product.asin }}">
       <button>選択する</button>
