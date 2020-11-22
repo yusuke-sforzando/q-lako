@@ -28,6 +28,8 @@ def airtable_client():
 def test_register(airtable_client):
     """Testing whether a dictionary with the proper field names can be registered correctly."""
 
+    assert registerable_asset.asset_id
+    assert registerable_asset.registered_at
     assert airtable_client.register_asset(registerable_asset)
 
 
