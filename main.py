@@ -22,9 +22,7 @@ def search():
     products_list = []
     keyword = request.args.get("query", "")
     app.logger.info("search(): GET /search?query={}".format(keyword))
-    search_products_result = amazon_api_client.search_products(keywords=keyword)
-    for product in search_products_result:
-        products_list.append({"asin": product.asin, "title": product.title, "image_url": product.images.large})
+    products_list = amazon_api_client.search_products(keywords=keyword)
     context_dict = {
         "subtitle": template_filename,
         "keyword": keyword,
@@ -33,13 +31,13 @@ def search():
     return render_template(template_filename, **context_dict)
 
 
-@ app.route("/registration", methods=["GET"])
+@ app.route("/registration", methods=["GET", "POST"])
 def registration():
-    app.logger.info("search(): GET /registration")
+    app.logger.info("search(): POST /registration")
     template_filename = "registration.html"
     context_dict = {
         "subtitle": template_filename,
-        "asin": request.args.get("asin")
+        "asin": request.form["asin"]
     }
     return render_template(template_filename, **context_dict)
 
