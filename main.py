@@ -19,11 +19,14 @@ def index():
 @app.route("/registration-details", methods=["GET"])
 def registration_details():
     app.logger.info("search(): GET /registration-details")
-    asin = "B07B7HG86W"
-    products = amazon_api_client.search_products(keywords=asin)
-    product = products[0].asin
-    print(product)
-    return render_template("registration-details.html", prpduct=product)
+    template_filename = "registration-details.html"
+    asin = request.args.get("query", "")
+    product = amazon_api_client.search_products(keywords=asin)[0]
+    context_dict = {
+        "product": product,
+        "template_file": template_filename
+    }
+    return render_template("registration-details.html", **context_dict)
 
 
 if __name__ == "__main__":
