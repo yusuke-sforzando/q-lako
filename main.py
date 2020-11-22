@@ -19,12 +19,14 @@ def index():
 @app.route("/search", methods=["GET"])
 def search():
     app.logger.info("search(): GET /search")
+    template_filename = "search.html"
     products_list = []
     keyword = request.args.get("query", "")
     search_products_result = amazon_api_client.search_products(keywords=keyword)
     for product in search_products_result:
         products_list.append({"asin": product.asin, "title": product.title, "image_url": product.images.large})
     context_dict = {
+        "subtitle": template_filename,
         "keyword": keyword,
         "products_list": products_list
     }
@@ -34,8 +36,12 @@ def search():
 @app.route("/registration-details", methods=["GET"])
 def registration_details():
     app.logger.info("search(): GET /registration-details")
-    asin = request.args.get("asin")
-    return render_template("registration-details.html", asin=asin)
+    template_filename = "registration-details.html"
+    context_dict = {
+        "subtitle": template_filename,
+        "asin": request.args.get("asin")
+    }
+    return render_template("registration-details.html", **context_dict)
 
 
 if __name__ == "__main__":
