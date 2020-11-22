@@ -23,6 +23,7 @@ def registration_details():
     asin = request.args.get("query", "")
     product = amazon_api_client.search_products(keywords=asin)[0]
     context_dict = {
+        "subtitle": template_filename,
         "product": product,
         "template_file": template_filename
     }
