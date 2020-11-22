@@ -21,5 +21,6 @@ class Asset:
     registered_at: str = field(init=False)
 
     def __post_init__(self):
-        self.asset_id = datetime.now(timezone(timedelta(hours=9))).isoformat(timespec="seconds")
+        now = datetime.now(timezone(timedelta(hours=9)))
+        self.asset_id = round(datetime.timestamp(now))
         self.registered_at = datetime.now(timezone(timedelta(hours=9))).isoformat()
