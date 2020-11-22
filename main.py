@@ -19,14 +19,13 @@ def index():
 @app.route("/search", methods=["GET"])
 def search():
     template_filename = "search.html"
-    products_list = []
     keyword = request.args.get("query", "")
     app.logger.info("search(): GET /search?query={}".format(keyword))
-    products_list = amazon_api_client.search_products(keywords=keyword)
+    product_list = amazon_api_client.search_products(keywords=keyword)
     context_dict = {
         "subtitle": template_filename,
         "keyword": keyword,
-        "products_list": products_list
+        "product_list": product_list
     }
     return render_template(template_filename, **context_dict)
 
