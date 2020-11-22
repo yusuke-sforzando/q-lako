@@ -25,11 +25,16 @@ def airtable_client():
     return airtable_client
 
 
-def test_register(airtable_client):
-    """Testing whether a dictionary with the proper field names can be registered correctly."""
+def test_check_asset_instance(airtable_client):
+    """Testing Asset data class have asset_id and registered_at."""
 
     assert registerable_asset.asset_id
     assert registerable_asset.registered_at
+
+
+def test_register(airtable_client):
+    """Testing whether a dictionary with the proper field names can be registered correctly."""
+
     assert airtable_client.register_asset(registerable_asset)
 
 
