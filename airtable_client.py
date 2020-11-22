@@ -35,4 +35,4 @@ class AirtableClient:
             raise he
         except TypeError as te:
             app.logger.error(te)
-            return "asset should be called on asset dataclass instances"
+            raise te

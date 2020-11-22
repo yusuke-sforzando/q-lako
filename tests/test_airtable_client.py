@@ -34,4 +34,5 @@ def test_register(airtable_client):
 def test_register_non_existent_key(airtable_client):
     """Testing an instance of the Airtable date class is an argument."""
 
-    assert "asset should be called on asset dataclass instances" in airtable_client.register_asset({"test": "test"})
+    with pytest.raises(TypeError):
+        airtable_client.register_asset({"test": "test"})
