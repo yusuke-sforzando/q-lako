@@ -1,18 +1,18 @@
 {
   "cSpell.words": [
     "airtable",
+    "appengine",
     "asdict",
     "astimezone",
     "dotenv",
-    "GGGBKRQ",
+    "gcloud",
     "key",
     "lako",
     "paapi",
     "pytest",
     "q-lako",
-    "qlako",
-    "yubi key",
-    "yubi"
+    "yubi",
+    "yubi key"
   ],
   "python.pythonPath": "./venv/bin/python3",
   "python.formatting.provider": "autopep8"

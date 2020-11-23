@@ -17,19 +17,24 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install --use-feature=2020-resolver -r requirements.txt
-      - name: Lint with flake8
+      - id: lint
+        name: Lint with flake8
         run: |
           flake8 *.py
-      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      - uses: google-github-actions/setup-gcloud@master
         with:
           project_id: ${{ secrets.PROJECT_ID }}
           service_account_key: ${{ secrets.GAE_SECRET_KEY }}
           export_default_credentials: true
-      - name: Test with pytest
+      - id: test
+        name: Test with pytest
         run: |
           pytest . -vv --ignore-glob="venv/**/*" --durations=0 --cov --cov-branch --cov-report=xml
           bash <(curl -s https://codecov.io/bash)
-      - name: Deploy to Google App Engine
-        uses: GoogleCloudPlatform/github-actions/appengine-deploy@master
+      - id: deploy
+        name: Deploy to Google App Engine
+        uses: google-github-actions/deploy-appengine@main
         with:
           project_id: ${{ secrets.PROJECT_ID }}
+      - name: Check Deployed URL
+        run: curl "${{ steps.deploy.outputs.url }}"

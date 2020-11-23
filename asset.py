@@ -1,11 +1,13 @@
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 
+tz_jst = timezone(timedelta(hours=9), "JST")
+
 
 @dataclass
 class Asset:
     title: str
-    asset_id: str = field(init=False)
+    asset_id: int = field(init=False, default=0)
     asin: str
     url: str
     images: list
@@ -18,8 +20,11 @@ class Asset:
     current_position: str
     note: str
     registrant_name: str
-    registered_at: str = field(init=False)
+    registered_at: str = field(init=False, default="")
 
     def __post_init__(self):
-        self.asset_id = "0"
-        self.registered_at = datetime.now(timezone(timedelta(hours=9))).isoformat()
+        now = datetime.now(tz_jst)
+        if not self.asset_id:
+            self.asset_id = round(datetime.timestamp(now))
+        if not self.registered_at:
+            self.registered_at = datetime.now(tz_jst).isoformat()

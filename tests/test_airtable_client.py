@@ -1,3 +1,5 @@
+import os
+
 import pytest
 
 from airtable_client import AirtableClient
@@ -25,7 +27,26 @@ def airtable_client():
     return airtable_client
 
 
+def test_api_key():
+    assert os.getenv("airtable_base_id")
+    assert os.getenv("airtable_api_key")
+
+
+def test_check_asset_instance(airtable_client):
+    """Testing Asset data class have asset_id and registered_at."""
+
+    assert registerable_asset.asset_id
+    assert registerable_asset.registered_at
+
+
 def test_register(airtable_client):
     """Testing whether a dictionary with the proper field names can be registered correctly."""
 
     assert airtable_client.register_asset(registerable_asset)
+
+
+def test_register_non_existent_key(airtable_client):
+    """Testing an instance of the Airtable data class is an argument."""
+
+    with pytest.raises(TypeError):
+        airtable_client.register_asset({"test": "test"})

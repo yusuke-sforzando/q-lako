@@ -1,16 +1,16 @@
-from configparser import ConfigParser
 import os
+from configparser import ConfigParser
 
 from amazon.paapi import AmazonAPI
 from dotenv import load_dotenv
 from flask import Flask
 
-config = ConfigParser()
-config.read("settings.ini", encoding="utf8")
 load_dotenv(verbose=True)
+config_parser = ConfigParser()
+config_parser.read("settings.ini", encoding="utf8")
 
 app = Flask(__name__)
-app.config["TABLE_NAME"] = config.get("DEFAULT", "table_name")
+app.config["AIRTABLE_TABLE_NAME"] = config_parser.get("DEFAULT", "airtable_table_name")
 
 amazon_api_client = AmazonAPI(os.getenv("amazon_access_key"),
                               os.getenv("amazon_secret_key"),
@@ -22,11 +22,10 @@ if os.getenv("GAE_ENV", "").startswith("standard"):
 
     app.config["IS_LOCAL"] = False
     import google.cloud.logging
-    from google.cloud.logging.handlers import CloudLoggingHandler
     import logging
 
     client = google.cloud.logging.Client()
-    handler = CloudLoggingHandler(client)
+    handler = client.get_default_handler()
     cloud_logger = logging.getLogger(__name__)
     cloud_logger.setLevel(logging.DEBUG)
     cloud_logger.addHandler(handler)
