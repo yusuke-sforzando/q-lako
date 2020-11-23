@@ -16,6 +16,9 @@
     {% block main %}
     {% endblock %}
   </div>
+  {% if message %}
+  <p class="text-center">TODO: Show "{{ message }}" as a flash message.</p>
+  {% endif %}
   {% include "_footer.html" %}
   <!-- <script>
     window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
