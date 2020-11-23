@@ -29,7 +29,7 @@ def airtable_client():
 
 def test_api_key():
     assert os.getenv("airtable_base_id")
-    assert os.getenv("keykAKzfeq4JxssYQ")
+    assert os.getenv("airtable_api_key")
 
 
 def test_check_asset_instance(airtable_client):
