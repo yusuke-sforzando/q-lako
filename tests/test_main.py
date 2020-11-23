@@ -27,7 +27,7 @@ def test_GET_search_with_incorrect_query(test_client):
 
 
 def test_GET_search_with_not_inputted_query(test_client):
-    response = test_client.get("search?query=")
+    response = test_client.get("/search?query=")
     assert "TOPページに戻ってキーワードを入力してください" in response.data.decode('utf-8')
 
 
