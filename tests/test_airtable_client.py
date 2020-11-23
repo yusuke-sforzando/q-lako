@@ -1,3 +1,5 @@
+import os
+
 import pytest
 
 from airtable_client import AirtableClient
