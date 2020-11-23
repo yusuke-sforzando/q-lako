@@ -1,9 +1,12 @@
+from configparser import ConfigParser
 import os
 
 from amazon.paapi import AmazonAPI
 from dotenv import load_dotenv
 from flask import Flask
 
+config = ConfigParser()
+config.read("settings.ini", encoding="utf8")
 load_dotenv(verbose=True)
 
 app = Flask(__name__)
@@ -39,11 +42,13 @@ else:
     except ImportError as ie:
         app.logger.warning(f"{ie}")
 
-# Read theme color from css file
-try:
-    with app.open_resource("static/css/common.css", "r") as f:
-        theme_color = [line[-9:-2] for line in f if "--theme-color-gray:" in line]
-except FileNotFoundError as fe:
-    app.logger.error(fe)
+# Read theme color form settings.ini
+app.config["THEME_COLOR"] = config.get("DEFAULT", "theme_color_gray")
 
-app.config["THEME_COLOR"] = theme_color[0] if theme_color else "#fafafa"
+# Generate css
+os.makedirs('static/css', exist_ok=True)
+with open("static/css/generated.css", "w") as f:
+    css_theme_color = ":root {\n" + \
+        "  --theme-color-blue: " + config.get("DEFAULT", "theme_color_blue") + ";\n" + \
+        "  --theme-color-gray: " + app.config["THEME_COLOR"] + ";\n}"
+    f.write(css_theme_color)

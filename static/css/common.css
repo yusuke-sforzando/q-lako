@@ -1,7 +1,4 @@
-:root {
-  --theme-color-gray: #393e46;
-  --theme-color-blue: #4caaba;
-}
+@import url("./generated.css");
 
 .theme-color-blue {
   color: var(--theme-color-blue);

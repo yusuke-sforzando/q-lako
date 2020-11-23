@@ -11,6 +11,7 @@ q-lako is a service to quickly register equipments and books.
 - [Requirements](#requirements)
 - [How to](#how-to)
   - [Enter Python Virtual Environment](#enter-python-virtual-environment)
+  - [Prepare `settings.ini`](#prepare-settingsini)
   - [Prepare `.env` and `.env.gpg`](#prepare-env-and-envgpg)
   - [Run](#run)
   - [Lint](#lint)
@@ -40,6 +41,18 @@ pip install --upgrade --use-feature=2020-resolver -r requirements.txt
 
 The reason why `ARCHFLAGS` needs to be specified is due to [Apple's bugs in Xcode12](https://github.com/giampaolo/psutil/issues/1832).
 It is recommended to explicitly specify the resolver options until [`pip` version 20.3](https://www.python.jp/pages/2020-10-07-new-pip-deps.html#%E6%96%B0%E3%81%97%E3%81%84%E4%BE%9D%E5%AD%98%E3%83%AA%E3%82%BE%E3%83%AB%E3%83%90).
+
+### Prepare `settings.ini`
+
+```INI
+[DEFAULT]
+theme_color_blue=#4caaba
+theme_color_gray=#393e46
+```
+
+- `generated.css` file is generated each time app initialize
+  - It needs `theme_color_blue` and `theme_color_gray`
+  - It is imported to `common.css`
 
 ### Prepare `.env` and `.env.gpg`
 
