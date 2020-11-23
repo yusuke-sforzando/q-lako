@@ -5,8 +5,6 @@ from amazon.paapi import AmazonAPI
 from dotenv import load_dotenv
 from flask import Flask
 
-config = ConfigParser()
-config.read("settings.ini", encoding="utf8")
 load_dotenv(verbose=True)
 config_parser = ConfigParser()
 config_parser.read("settings.ini", encoding="utf8")
@@ -45,12 +43,12 @@ else:
         app.logger.warning(f"{ie}")
 
 # Read theme color form settings.ini
-app.config["THEME_COLOR"] = config.get("DEFAULT", "theme_color_gray")
+app.config["THEME_COLOR"] = config_parser.get("DEFAULT", "theme_color_gray")
 
 # Generate css
 os.makedirs('static/css', exist_ok=True)
 with open("static/css/generated.css", "w") as f:
     css_theme_color = ":root {\n" + \
-        "  --theme-color-blue: " + config.get("DEFAULT", "theme_color_blue") + ";\n" + \
+        "  --theme-color-blue: " + config_parser.get("DEFAULT", "theme_color_blue") + ";\n" + \
         "  --theme-color-gray: " + app.config["THEME_COLOR"] + ";\n}"
     f.write(css_theme_color)
