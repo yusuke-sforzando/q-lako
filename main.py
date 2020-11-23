@@ -23,7 +23,7 @@ def search():
     if not keyword:
         context_dict["message"] = "TOPページに戻ってキーワードを入力してください"
 
-    return render_template(template_filename, **context_dict)
+    return render_template("search.html", **context_dict)
 
 
 if __name__ == "__main__":
