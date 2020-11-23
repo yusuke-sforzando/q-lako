@@ -15,11 +15,7 @@ def test_GET_search(test_client):
     assert response.status_code == 200
 
 
-def registration_post(test_client, asin):
-    return test_client.post('/registration', data=dict(asin=asin))
-
-
 def test_GET_registration(test_client):
-    response = registration_post(test_client, "B07B7HG86W")
+    response = test_client.post('/registration', data={"asin": "B07B7HG86W"})
     assert b"registration.html" in response.data
     assert response.status_code == 200
