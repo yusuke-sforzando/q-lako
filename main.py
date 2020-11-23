@@ -34,10 +34,14 @@ def search():
 def registration():
     app.logger.info("search(): POST /registration")
     template_filename = "registration.html"
+    asin = request.form.get("asin", "")
     context_dict = {
         "subtitle": template_filename,
-        "asin": request.form["asin"]
+        "asin": asin
     }
+    if not asin:
+        context_dict["message"] = "TOPページに戻ってキーワードを入力してください"
+
     return render_template(template_filename, **context_dict)
 
 
