@@ -1,5 +1,6 @@
 import os
 from configparser import ConfigParser
+from pathlib import Path
 
 from amazon.paapi import AmazonAPI
 from dotenv import load_dotenv
@@ -45,10 +46,18 @@ else:
 # Read theme color form settings.ini
 app.config["THEME_COLOR"] = config_parser.get("Common", "theme_color_gray")
 
-# Generate css
-os.makedirs('static/css', exist_ok=True)
-with open("static/css/generated.css", "w") as f:
-    css_theme_color = ":root {\n" + \
-        "  --theme-color-blue: " + config_parser.get("Common", "theme_color_blue") + ";\n" + \
-        "  --theme-color-gray: " + app.config["THEME_COLOR"] + ";\n}\n"
-    f.write(css_theme_color)
+# Update css with theme color in settings.ini
+css_dir = Path("static/css")
+os.makedirs(css_dir, exist_ok=True)
+css_file_path = css_dir / "common.css"
+with open(css_file_path, mode="r") as rf:
+    css_lines = rf.readlines()
+    for index, line in enumerate(css_lines):
+        if "theme-color-blue" in line:
+            css_lines[index + 1] = f"  color: {config_parser.get('Common', 'theme_color_blue')};\n"
+        elif "theme-color-gray" in line:
+            css_lines[index + 1] = f"  color: {app.config['THEME_COLOR']};\n"
+        elif "theme-bg-color-gray" in line:
+            css_lines[index + 1] = f"  background-color: {app.config['THEME_COLOR']};\n"
+with open(css_file_path, mode="w") as wf:
+    wf.writelines(css_lines)

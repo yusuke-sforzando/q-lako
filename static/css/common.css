@@ -1,13 +1,11 @@
-@import url("./generated.css");
-
 .theme-color-blue {
-  color: var(--theme-color-blue);
+  color: #4caaba;
 }
 
 .theme-color-gray {
-  color: var(--theme-color-gray);
+  color: #393e46;
 }
 
 .theme-bg-color-gray {
-  background-color: var(--theme-color-gray);
+  background-color: #393e46;
 }
