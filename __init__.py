@@ -1,16 +1,16 @@
-from configparser import ConfigParser
 import os
+from configparser import ConfigParser
 
 from amazon.paapi import AmazonAPI
 from dotenv import load_dotenv
 from flask import Flask
 
-config = ConfigParser()
-config.read("settings.ini", encoding="utf8")
 load_dotenv(verbose=True)
+config_parser = ConfigParser()
+config_parser.read("settings.ini", encoding="utf8")
 
 app = Flask(__name__)
-app.config["AIRTABLE_TABLE_NAME"] = config.get("DEFAULT", "airtable_table_name")
+app.config["AIRTABLE_TABLE_NAME"] = config_parser.get("DEFAULT", "airtable_table_name")
 
 amazon_api_client = AmazonAPI(os.getenv("amazon_access_key"),
                               os.getenv("amazon_secret_key"),

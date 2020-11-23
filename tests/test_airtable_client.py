@@ -25,6 +25,11 @@ def airtable_client():
     return airtable_client
 
 
+def test_api_key():
+    assert os.getenv("airtable_base_id")
+    assert os.getenv("keykAKzfeq4JxssYQ")
+
+
 def test_check_asset_instance(airtable_client):
     """Testing Asset data class have asset_id and registered_at."""
 

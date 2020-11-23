@@ -1,8 +1,8 @@
-from dataclasses import asdict
 import os
+from dataclasses import asdict
 
-from airtable import Airtable
 import requests
+from airtable import Airtable
 
 from __init__ import app
 from asset import Asset
