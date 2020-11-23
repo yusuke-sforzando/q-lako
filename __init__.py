@@ -50,5 +50,5 @@ os.makedirs('static/css', exist_ok=True)
 with open("static/css/generated.css", "w") as f:
     css_theme_color = ":root {\n" + \
         "  --theme-color-blue: " + config_parser.get("DEFAULT", "theme_color_blue") + ";\n" + \
-        "  --theme-color-gray: " + app.config["THEME_COLOR"] + ";\n}"
+        "  --theme-color-gray: " + app.config["THEME_COLOR"] + ";\n}\n"
     f.write(css_theme_color)
