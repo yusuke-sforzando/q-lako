@@ -13,7 +13,7 @@ def index():
 
 @app.route("/search", methods=["GET"])
 def search():
-    app.logger.info("search(): GET /search")
+    app.logger.info(f"search(): GET {request.full_path}")
     keyword = request.args.get("query", "")
     template_filename = "search.html"
     context_dict = {
