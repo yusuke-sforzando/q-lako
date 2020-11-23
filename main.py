@@ -15,7 +15,9 @@ def index():
 def search():
     app.logger.info("search(): GET /search")
     keyword = request.args.get("query", "")
+    template_filename = "search.html"
     context_dict = {
+        "subtitle": template_filename,
         "keyword": keyword
     }
     if not keyword:
