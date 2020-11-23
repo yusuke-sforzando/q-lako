@@ -11,10 +11,10 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/search", methods=["GET"])
+@app.route("/search", methods=["GET", "POST"])
 def search():
-    app.logger.info("search(): GET /search")
-    keyword = request.args.get("query", "")
+    app.logger.info("search(): POST /search")
+    keyword = request.form.get("query", "")
     context_dict = {
         "keyword": keyword
     }
