@@ -13,7 +13,7 @@ def index():
 
 @app.route("/search", methods=["GET"])
 def search():
-    app.logger.info("search(): GET /search")
+    app.logger.info(f"search(): GET {request.full_path}")
     keyword = request.args.get("query", "")
     template_filename = "search.html"
     context_dict = {
@@ -23,7 +23,7 @@ def search():
     if not keyword:
         context_dict["message"] = "TOPページに戻ってキーワードを入力してください"
 
-    return render_template("search.html", **context_dict)
+    return render_template(template_filename, **context_dict)
 
 
 if __name__ == "__main__":
