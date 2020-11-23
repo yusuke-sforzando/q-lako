@@ -1,9 +1,14 @@
 {
   "cSpell.words": [
     "airtable",
+    "appengine",
+    "asdict",
+    "astimezone",
     "dotenv",
+    "gcloud",
     "key",
     "lako",
+    "paapi",
     "pytest",
     "q-lako",
     "yubi",
