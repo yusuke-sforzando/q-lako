@@ -16,7 +16,7 @@ def search():
     app.logger.info(f"search(): GET {request.full_path}")
     keyword = request.args.get("query", "")
     context_dict = {
-        "subtitle": "product list",
+        "subtitle": "search result",
         "keyword": keyword
     }
     if not keyword:
