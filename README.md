@@ -48,6 +48,7 @@ It is recommended to explicitly specify the resolver options until [`pip` versio
 [DEFAULT]
 theme_color_blue=#4caaba
 theme_color_gray=#393e46
+airtable_table_name=q-lako
 ```
 
 - `generated.css` file is generated each time app initialize
