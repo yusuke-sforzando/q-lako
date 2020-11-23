@@ -22,11 +22,10 @@ if os.getenv("GAE_ENV", "").startswith("standard"):
 
     app.config["IS_LOCAL"] = False
     import google.cloud.logging
-    from google.cloud.logging_v2.handlers import CloudLoggingHandler
     import logging
 
     client = google.cloud.logging.Client()
-    handler = CloudLoggingHandler(client)
+    handler = client.get_default_handler()
     cloud_logger = logging.getLogger(__name__)
     cloud_logger.setLevel(logging.DEBUG)
     cloud_logger.addHandler(handler)
