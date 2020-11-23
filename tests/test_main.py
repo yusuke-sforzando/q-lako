@@ -16,22 +16,18 @@ def test_GET_index(test_client):
     assert "キーワード、ISBNコード、ASINコードのいずれかを入力してください" in response.data.decode('utf-8')
 
 
-def post_search(test_client, query):
-    return test_client.post('/search', data=dict(query=query))
-
-
 def test_GET_search_with_correct_query(test_client):
-    response = post_search(test_client, "kindle")
+    response = test_client.get("/search?query=kindle")
     assert b"kindle" in response.data
 
 
 def test_GET_search_with_incorrect_query(test_client):
-    response = post_search(test_client, "")
+    response = test_client.get("/search?unexpected_query=kindle")
     assert "TOPページに戻ってキーワードを入力してください" in response.data.decode('utf-8')
 
 
 def test_GET_search_with_not_inputted_query(test_client):
-    response = test_client.get("/search?query=")
+    response = test_client.get("search?query=")
     assert "TOPページに戻ってキーワードを入力してください" in response.data.decode('utf-8')
 
 
