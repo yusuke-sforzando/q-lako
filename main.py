@@ -10,7 +10,6 @@ def index():
     app.logger.info("index(): GET /")
     template_filename = "index.html"
     context_dict = {
-        "theme_color": app.config["THEME_COLOR"],
         "subtitle": template_filename,
         "message": f"This is {template_filename}."
     }
