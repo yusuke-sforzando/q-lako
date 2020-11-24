@@ -45,15 +45,13 @@ It is recommended to explicitly specify the resolver options until [`pip` versio
 ### Prepare `settings.ini`
 
 ```INI
-[Common]
+[THEME-COLOR]
 theme_color_blue=#4caaba
 theme_color_gray=#393e46
 
-[Airtable]
+[AIRTABLE]
 airtable_table_name=q-lako
 ```
-
-Theme colors in `common.css` are updated in value of `settings.ini` each time app initialize.
 
 ### Prepare `.env` and `.env.gpg`
 
