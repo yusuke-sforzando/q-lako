@@ -3,6 +3,7 @@
 from flask import render_template, request
 
 from __init__ import app, amazon_api_client
+from asset import Asset
 
 
 @app.route("/", methods=["GET"])
@@ -21,12 +22,28 @@ def registration():
     app.logger.info("search(): POST /registration")
     asin = "B07XB5WX89"
     product = amazon_api_client.search_products(keywords=asin)[0]
+
+    registerable_asset = Asset(
+        title=product.title,
+        asin=product.asin,
+        url=product.url,
+        images=product.images.large,
+        manufacture=product.info.manufacturer,
+        contributor="",
+        product_group=product.info.product_group,
+        publication_date=product.info.publication_date,
+        features=product.product.features,
+        default_position="",
+        current_position="",
+        note="",
+        registrant_name="")
+
     contributors = product.info.contributors
     context_dict = {
         "subtitle": "registration details",
-        "asin": asin,
-        "product": product,
-        "contributors": "None"
+        "asin": registerable_asset.asin,
+        "contributors": "None",
+        "registerable_asset": registerable_asset
     }
     if contributors:
         context_dict["contributors"] = [contributor.name for contributor in contributors]
