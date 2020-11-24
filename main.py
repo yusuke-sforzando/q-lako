@@ -19,15 +19,15 @@ def index():
 @app.route("/registration", methods=["GET", "POST"])
 def registration():
     app.logger.info("search(): POST /registration")
-    template_filename = "registration.html"
     asin = "B07XB5WX89"
     product = amazon_api_client.search_products(keywords=asin)[0]
     contributors = product.info.contributors
     context_dict = {
-        "subtitle": template_filename,
+        "subtitle": "registration details",
         "asin": asin,
         "product": product,
-        "template_file": template_filename}
+        "contributors": "None"
+    }
     if contributors:
         context_dict["contributors"] = [contributor.name for contributor in contributors]
     return render_template("registration.html", **context_dict)

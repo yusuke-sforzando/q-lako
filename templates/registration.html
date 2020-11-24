@@ -1,41 +1,20 @@
 {% extends "_base.html" %}
 {% block main %}
-<h1>登録内容詳細</h1>
 <div>
+  <h1>登録内容詳細</h1>
   <image src="{{ product.images.large }}" alt="image of {{ product.title }}" />
-  <h2>{{ product.title }}</h2>
-  <form action="/registration" method="post">
-    <div>
-      <p><label for="url">URL:</label> <input type="url" id="url" value="{{ product.url }}" placeholder=""></p>
-      <p><label for="asin">ASINコード:</label> <input type="url" id="asin" value="{{ product.asin}}" placeholder=""></p>
-      <p>製造元: {{ product.info.manufacturer }}</p>
-      <p>著者: {{ contributors }}</p>
-      <p>発売日: {{ product.info.publication_date }}</p>
-      <p>カテゴリ: {{ product.info.product_group }}</p>
-      <p>保管場所: </p>
-      <select name=”registrants”>
-        <option value=”sforzando”>sforzando 川崎</option>
-        <option value=”yusuke”>yusuke-sforzando</option>
-        <option value=”tomoya”>tomoya-sforzando</option>
-        <option value=”shin”>shin-sforzando</option>
-      </select>
-      <p>登録者:</p>
-      <select name=”registrants”>
-        <option value=”yusuke”>yusuke-sforzando</option>
-        <option value=”tomoya”>tomoya-sforzando</option>
-        <option value=”shin”>shin-sforzando</option>
-      </select>
-      <p>登録日: {{ product.registered_at }}</p>
-      <p>個数: </p>
-      <div></div>
-      <input type="int" name="quantity" id="quantity" placeholder="1">
-      <div>
-        <p>備考:</p><input type="int" name="quantity" id="quantity" placeholder={{ product.note }}>
-      </div>
-      説明:{{ product.product.features }}
-
-      <button>登録する</button>
-    </div>
-  </form>
+  <p>商品名/書籍名{{ product.title }}</p>
+  <p>URL: <a href="{{ product.url}}">{{ product.url }}</a></p>
+  <p>ASINコード: {{ product.asin}}</p>
+  <p>製造元: {{ product.info.manufacturer }}</p>
+  <p>著者: {{ contributors }}</p>
+  <p>発売日: {{ product.info.publication_date }}</p>
+  <p>カテゴリ: {{ product.info.product_group }}</p>
+  <p>保管場所: VALUE_OF_REGISTRANT_NAME</p>
+  <p>登録者: VALUE_OF_REGISTRANT_NAME</p>
+  <p>登録日: {{ VALUE_OF_REGISTERED_AT }}</p>
+  <p>個数: VALUE_OF_QUANTITY</p>
+  <p>備考: VALUE_OF_NOTE</p>
+  <p>説明:{{ product.product.features }}</p>
 </div>
 {% endblock %}
