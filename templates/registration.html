@@ -1,20 +1,29 @@
 {% extends "_base.html" %}
 {% block main %}
 <div>
-  <h1>登録内容詳細</h1>
-  <image src="{{ registerable_asset.images }}" alt="image of {{ registerable_asset.title }}" />
-  <p>商品名/書籍名{{ registerable_asset.title }}</p>
-  <p>URL: <a href="{{ registerable_asset.url}}">{{ registerable_asset.url }}</a></p>
-  <p>ASINコード: {{ registerable_asset.asin}}</p>
-  <p>製造元: {{ registerable_asset.manufacture }}</p>
-  <p>著者: {{ contributors }}</p>
-  <p>発売日: {{ registerable_asset.publication_date }}</p>
-  <p>カテゴリ: {{ registerable_asset.product_group }}</p>
-  <p>保管場所: VALUE_OF_REGISTRANT_NAME</p>
-  <p>登録者: VALUE_OF_REGISTRANT_NAME</p>
-  <p>登録日: {{ VALUE_OF_REGISTERED_AT }}</p>
-  <p>個数: VALUE_OF_QUANTITY</p>
-  <p>備考: VALUE_OF_NOTE</p>
-  <p>説明:{{ registerable_asset.features }}</p>
+  <form action="/registration" method="post">
+    <h1>登録内容詳細</h1>
+    <image src="{{ registerable_asset.images }}" alt="image of {{ registerable_asset.title }}" />
+    <div>
+      <src="{{ registerable_asset.url }}">
+        <input type="hidden" name="url" value="" />
+    </div>
+    <div>
+      <label for="title_id">商品名/書籍名:</label>
+      <input type="text" name="title" id="title_id" value="{{ registerable_asset.title }}">
+    </div>
+    <p>URL: <a href="{{ registerable_asset.url}}">{{ registerable_asset.url }}</a></p>
+    <p>ASINコード: {{ registerable_asset.asin}}</p>
+    <p>製造元: {{ registerable_asset.manufacture }}</p>
+    <p>著者: {{ contributors }}</p>
+    <p>発売日: {{ registerable_asset.publication_date }}</p>
+    <p>カテゴリ: {{ registerable_asset.product_group }}</p>
+    <p>保管場所: VALUE_OF_REGISTRANT_NAME</p>
+    <p>登録者: VALUE_OF_REGISTRANT_NAME</p>
+    <p>登録日: {{ VALUE_OF_REGISTERED_AT }}</p>
+    <p>個数: VALUE_OF_QUANTITY</p>
+    <p>備考: VALUE_OF_NOTE</p>
+    <p>説明:{{ registerable_asset.features }}</p>
+  </form>
 </div>
 {% endblock %}
