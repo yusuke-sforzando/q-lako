@@ -1,11 +1,16 @@
+:root {
+  --theme-color-blue: #4caaba;
+  --theme-color-gray: #393e46;
+}
+
 .theme-color-blue {
-  color: #4caaba;
+  color: var(--theme-color-blue);
 }
 
 .theme-color-gray {
-  color: #393e46;
+  color: var(--theme-color-gray);
 }
 
 .theme-bg-color-gray {
-  background-color: #393e46;
+  background-color: var(--theme-color-gray);
 }
