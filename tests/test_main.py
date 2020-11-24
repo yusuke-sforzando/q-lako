@@ -17,6 +17,7 @@ def test_GET_index(test_client):
 
 def test_GET_search(test_client):
     response = test_client.get("/search?query=サーカスTC")
+    assert response.data.decode("utf-8").count("サーカスTC") > 1
     assert b"search.html" in response.data
     assert response.status_code == 200
 

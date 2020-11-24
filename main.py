@@ -1,5 +1,6 @@
 # !/usr/bin/env python3
 
+from amazon.exception import AmazonException
 from flask import render_template, request
 
 from __init__ import app, amazon_api_client
@@ -20,13 +21,20 @@ def index():
 def search():
     template_filename = "search.html"
     keyword = request.args.get("query", "")
-    app.logger.info(f"search(): GET /{request.full_path}")
-    product_list = amazon_api_client.search_products(keywords=keyword)
     context_dict = {
         "subtitle": template_filename,
-        "keyword": keyword,
-        "product_list": product_list
+        "keyword": keyword
     }
+    if keyword:
+        app.logger.info(f"search(): GET /{request.full_path}")
+        try:
+            product_list = amazon_api_client.search_products(keywords=keyword)
+            context_dict["product_list"] = product_list
+
+        except AmazonException as ae:
+            raise ae
+    else:
+        context_dict["message"] = "TOPページに戻ってキーワードを入力してください"
     return render_template(template_filename, **context_dict)
 
 
