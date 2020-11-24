@@ -32,6 +32,7 @@ def search():
             context_dict["product_list"] = product_list
 
         except AmazonException as ae:
+            app.logger.error(f"{ae}")
             raise ae
     else:
         context_dict["message"] = "TOPページに戻ってキーワードを入力してください"
