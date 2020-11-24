@@ -28,8 +28,7 @@ def search():
     if keyword:
         app.logger.info(f"search(): GET /{request.full_path}")
         try:
-            product_list = amazon_api_client.search_products(keywords=keyword)
-            context_dict["product_list"] = product_list
+            context_dict["product_list"] = amazon_api_client.search_products(keywords=keyword)
 
         except AmazonException as ae:
             app.logger.error(f"{ae}")
