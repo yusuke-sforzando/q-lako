@@ -23,7 +23,7 @@ def test_GET_search(test_client):
 
 def test_POST_registration(test_client):
     response = test_client.post('/registration', data={"asin": "B07B7HG86W"})
-    assert b"registration.html" in response.data
+    assert b"registration details" in response.data
     assert response.status_code == 200
 
 

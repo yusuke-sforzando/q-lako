@@ -20,7 +20,7 @@ def index():
 def search():
     template_filename = "search.html"
     keyword = request.args.get("query", "")
-    app.logger.info("search(): GET /search?query={}".format(keyword))
+    app.logger.info(f"search(): GET /{request.full_path}")
     product_list = amazon_api_client.search_products(keywords=keyword)
     context_dict = {
         "subtitle": template_filename,
@@ -33,16 +33,15 @@ def search():
 @ app.route("/registration", methods=["GET", "POST"])
 def registration():
     app.logger.info("search(): POST /registration")
-    template_filename = "registration.html"
     asin = request.form.get("asin", "")
     context_dict = {
-        "subtitle": template_filename,
+        "subtitle": "registration details",
         "asin": asin
     }
     if not asin:
         context_dict["message"] = "TOPページに戻ってキーワードを入力してください"
 
-    return render_template(template_filename, **context_dict)
+    return render_template("registration.html", **context_dict)
 
 
 if __name__ == "__main__":
