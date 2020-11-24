@@ -17,7 +17,7 @@ def index():
     return render_template(template_filename, **context_dict)
 
 
-@app.route("/registration", methods=["GET", "POST"])
+@app.route("/registration", methods=["GET"])
 def registration():
     if request.method == "GET":
         app.logger.info(f"registration(): GET {request.full_path}")
