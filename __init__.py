@@ -1,6 +1,5 @@
 import os
 from configparser import ConfigParser
-from pathlib import Path
 
 from amazon.paapi import AmazonAPI
 from dotenv import load_dotenv
@@ -11,6 +10,7 @@ config_parser = ConfigParser()
 config_parser.read("settings.ini", encoding="utf8")
 
 app = Flask(__name__)
+app.config["THEME_COLOR"] = config_parser.get("Common", "theme_color_gray")
 app.config["AIRTABLE_TABLE_NAME"] = config_parser.get("Airtable", "airtable_table_name")
 
 amazon_api_client = AmazonAPI(os.getenv("amazon_access_key"),
@@ -42,22 +42,3 @@ else:
         dashboard.bind(app)
     except ImportError as ie:
         app.logger.warning(f"{ie}")
-
-# Read theme color form settings.ini
-app.config["THEME_COLOR"] = config_parser.get("Common", "theme_color_gray")
-
-# Update css with theme color in settings.ini
-css_dir = Path("static/css")
-os.makedirs(css_dir, exist_ok=True)
-css_file_path = css_dir / "common.css"
-with open(css_file_path, mode="r") as rf:
-    css_lines = rf.readlines()
-    for index, line in enumerate(css_lines):
-        if "theme-color-blue" in line:
-            css_lines[index + 1] = f"  color: {config_parser.get('Common', 'theme_color_blue')};\n"
-        elif "theme-color-gray" in line:
-            css_lines[index + 1] = f"  color: {app.config['THEME_COLOR']};\n"
-        elif "theme-bg-color-gray" in line:
-            css_lines[index + 1] = f"  background-color: {app.config['THEME_COLOR']};\n"
-with open(css_file_path, mode="w") as wf:
-    wf.writelines(css_lines)
