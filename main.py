@@ -20,7 +20,8 @@ def index():
 @app.route("/registration", methods=["GET", "POST"])
 def registration():
     app.logger.info("search(): POST /registration")
-    asin = "B07XB5WX89"
+    asin = request.form.get("asin", "B07XB5WX89")
+
     product = amazon_api_client.search_products(keywords=asin)[0]
 
     registerable_asset = Asset(

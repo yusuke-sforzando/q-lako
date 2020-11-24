@@ -16,6 +16,6 @@ def test_GET_index(test_client):
 
 
 def test_GET_registration(test_client):
-    response = test_client.get("/registration?query=B07B7HG86W")
-    assert b"registration.html" in response.data
+    response = test_client.get("/registration")
+    assert b"registration details" in response.data
     assert response.status_code == 200
