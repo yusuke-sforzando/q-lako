@@ -1,6 +1,7 @@
 {% extends "_base.html" %}
 {% block main %}
-<p>キーワード: {{ keyword }}</p>
+<p>Keyword: {{ keyword }}</p>
+<p>Item Hits: {{ item_hits }}</p>
 {% for product in product_list %}
 <div>
   <image src="{{ product.images.large }}" alt="image of {{ product.title }}" />
@@ -8,7 +9,7 @@
   <form action="/registration" method="post">
     <div>
       <input type="hidden" name="asin" value="{{ product.asin }}">
-      <button>選択する</button>
+      <button>Select</button>
     </div>
   </form>
 </div>

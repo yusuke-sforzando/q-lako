@@ -30,5 +30,5 @@ def test_POST_registration(test_client):
 
 def test_GET_registration_direct_access(test_client):
     response = test_client.get("/registration")
-    assert "TOPページに戻ってキーワードを入力してください" in response.data.decode('utf-8')
+    assert "Enter keywords back on the top page." in response.data
     assert response.status_code == 200
