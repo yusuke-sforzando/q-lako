@@ -11,16 +11,16 @@
 </head>
 
 <body>
-{% include "_header.html" %}
-<div class="text-center">
-  {% block main %}
-  {% endblock %}
-</div>
-{% if message %}
-  <p class="text-center">TODO: Show "{{ message }}" as a flash message.</p>
-{% endif %}
-{% include "_footer.html" %}
-<!-- <script>
+  {% include "_header.html" %}
+  <div class="text-center">
+    {% block main %}
+    {% endblock %}
+  </div>
+  {% if message %}
+  <p class="text-center">{{ message }}</p>
+  {% endif %}
+  {% include "_footer.html" %}
+  <!-- <script>
   window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
   ga("create", "UA-XXXXX-Y", "auto"); ga("set", "anonymizeIp", true); ga("set", "transport", "beacon"); ga("send", "pageview")
 </script>
