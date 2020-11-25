@@ -9,8 +9,7 @@ from __init__ import app
 def index():
     app.logger.info("index(): GET /")
     context_dict = {
-        "subtitle": "備品・書籍をらくらく登録",
-        "message": "こちらはダミーのメッセージです"
+        "message": "This is dummy message."
     }
     return render_template("index.html", **context_dict)
 

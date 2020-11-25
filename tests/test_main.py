@@ -11,5 +11,5 @@ def test_client():
 
 def test_GET_index(test_client):
     response = test_client.get("/")
-    assert b"This is index.html" in response.data
+    assert b"This is dummy message." in response.data
     assert response.status_code == 200
