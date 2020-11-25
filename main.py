@@ -20,7 +20,7 @@ def search():
         "keyword": keyword
     }
     if not keyword:
-        context_dict["message"] = "TOPページに戻ってキーワードを入力してください"
+        context_dict["message"] = "Enter keywords back on the top page."
 
     return render_template("search.html", **context_dict)
 
