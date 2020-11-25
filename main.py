@@ -70,14 +70,15 @@ def registration():
         app.logger.info(f"registration: GET /{request.full_path}")
     elif request.method == "POST":
         app.logger.info(f"registration: POST /{request.full_path}")
-
-    asin = request.form.get("asin", "")
     context_dict = {
         "subtitle": "a service that displays detailed information about the item.",
         "asin": ""
     }
+    asin = request.form.get("asin", "")
     if asin:
-        context_dict["asin"] = asin
+        for asset in session.get("asset_list", ""):
+            if asset.asin == asin:
+                context_dict["asin"] = asset.asin
     else:
         context_dict["message"] = "Enter keywords back on the top page."
     return render_template("registration.html", **context_dict)
