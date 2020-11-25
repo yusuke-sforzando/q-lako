@@ -54,14 +54,13 @@ Keep your passphrase in a secure location like [YubiKey](https://www.yubico.com)
     amazon_partner_tag="amazon_partner_tag"
     amazon_access_key="amazon_access_key"
     amazon_secret_key="amazon_secret_key"
-    flask_secret_key="ggSjAgEAAoIBAQCHW0YHLY"
     ```
 
-1. Encrypt `.env` to create `.env.gpg`
+2. Encrypt `.env` to create `.env.gpg`
 
     `gpg --symmetric --cipher-algo AES256 .env`
 
-1. Use your passphrase to decrypt `.env.gpg` .
+3. Use your passphrase to decrypt `.env.gpg` .
 
    `gpg --quiet --batch --decrypt --output=.env .env.gpg`
 
