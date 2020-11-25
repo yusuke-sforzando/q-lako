@@ -11,7 +11,7 @@ config_parser.read("settings.ini", encoding="utf8")
 
 app = Flask(__name__)
 app.config["AIRTABLE_TABLE_NAME"] = config_parser.get("DEFAULT", "airtable_table_name")
-app.secret_key = os.getenv("flask_secret_key")
+app.secret_key = os.urandom(16)
 
 amazon_api_client = AmazonAPI(os.getenv("amazon_access_key"),
                               os.getenv("amazon_secret_key"),
