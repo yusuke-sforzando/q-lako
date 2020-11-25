@@ -43,7 +43,7 @@ It is recommended to explicitly specify the resolver options until [`pip` versio
 
 ### Prepare `.env` and `.env.gpg`
 
-Write the API Key to `.env` and encrypt it.
+Write the API Key and Flask secret key to `.env` and encrypt it.
 Keep your passphrase in a secure location like [YubiKey](https://www.yubico.com).
 
 1. Prepare `.env`
@@ -54,6 +54,7 @@ Keep your passphrase in a secure location like [YubiKey](https://www.yubico.com)
     amazon_partner_tag="amazon_partner_tag"
     amazon_access_key="amazon_access_key"
     amazon_secret_key="amazon_secret_key"
+    flask_secret_key="ggSjAgEAAoIBAQCHW0YHLY"
     ```
 
 1. Encrypt `.env` to create `.env.gpg`

@@ -16,7 +16,7 @@ def test_GET_index(test_client):
 
 
 def test_GET_search(test_client):
-    response = test_client.get("/search?query=サーカスTC")
+    response = test_client.get("/search?query= サーカスTCDX")
     assert b"a service that displays search results." in response.data
     assert response.status_code == 200
 
