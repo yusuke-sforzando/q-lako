@@ -1,11 +1,9 @@
 {% extends "_base.html" %}
 {% block main %}
-<h1>Registration of equipment and books</h1>
-<form action="/search" method="get">
-  <div>
-    <label for="query">Enter one of the following keywords: keyword, ISBN code, or ASIN code</label>
-    <input type="text" name="query" id="query" placeholder="サーカスTC" />
-    <input type="submit" value="Search" />
-  </div>
-</form>
+  <h1>Registration of equipment and books</h1>
+  <form action="/search" method="get">
+    <label for="query">Enter one of the following keywords: keyword, ISBN, or ASIN.</label>
+    <input type="text" name="query" id="query" placeholder="サーカスTC"/>
+    <input type="submit" value="Search"/>
+  </form>
 {% endblock %}

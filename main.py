@@ -14,13 +14,12 @@ def index():
 @app.route("/search", methods=["GET"])
 def search():
     app.logger.info(f"search(): GET {request.full_path}")
-    keyword = request.args.get("query", "")
+    keyword = request.args.get("query", None)
     context_dict = {
-        "subtitle": "search result",
-        "keyword": keyword
+        "subtitle": f"Search Result for {keyword}",
+        "keyword": keyword,
+        "message": None if keyword else "Enter keywords back on the top page."
     }
-    if not keyword:
-        context_dict["message"] = "Enter keywords back on the top page."
 
     return render_template("search.html", **context_dict)
 
