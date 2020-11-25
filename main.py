@@ -54,7 +54,6 @@ def search():
                     )
                 )
             session["asset_list"] = asset_list
-            print(session["asset_list"])
             context_dict["product_list"] = product_list
             context_dict["item_hits"] = item_hits
         except AmazonException as ae:
