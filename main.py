@@ -22,12 +22,11 @@ def search():
     context_dict = {
         "subtitle": "a service that displays search results."
     }
-    keyword = request.form.get("query", "")
+    context_dict["keyword"] = request.form.get("query", "")
 
-    if keyword:
-        context_dict["keyword"] = keyword
+    if context_dict["keyword"]:
         try:
-            product_list = amazon_api_client.search_products(keywords=keyword)
+            product_list = amazon_api_client.search_products(keywords=context_dict["keyword"])
             item_hits = len(product_list)
             session["product_list"] = product_list
             context_dict["product_list"] = product_list
@@ -50,25 +49,7 @@ def registration():
         "subtitle": "a service that displays detailed information about the item."
     }
     context_dict["asin"] = request.form.get("asin", "")
-    if context_dict["asin"]:
-        for product in session.get("product_list", ""):
-            if product.asin == context_dict["asin"]:
-                context_dict["registerable_asset"] = Asset(
-                    title=product.title,
-                    asin=product.asin,
-                    url=product.url,
-                    images=product.images.large,
-                    manufacture=product.info.manufacturer,
-                    contributor="",
-                    product_group=product.info.product_group,
-                    publication_date=product.info.publication_date,
-                    features=product.product.features,
-                    default_position="",
-                    current_position="",
-                    note="",
-                    registrant_name=""
-                )
-    else:
+    if not context_dict["asin"]:
         context_dict["message"] = "Enter any keywords."
     return render_template("registration.html", **context_dict)
 
