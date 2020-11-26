@@ -43,5 +43,4 @@ def test_GET_registration_direct_access(test_client):
 
 def test_POST_registration_asin(test_client):
     response = test_client.post("/registration", data={"asin": "B07RHCB5X8"})
-    print(response.data)
     assert b"B07RHCB5X8" in response.data
