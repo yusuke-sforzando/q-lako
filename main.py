@@ -15,15 +15,17 @@ def index():
 def search():
     app.logger.info(f"search(): GET {request.full_path}.")
     keyword = request.args.get("query", None)
-    context_dict = {
-        "subtitle": f"Search Result for {keyword}",
-        "keyword": keyword,
-        "message": None if keyword else "Enter any keywords."
-    }
     if keyword:
+        context_dict = {
+            "subtitle": f"Search Result for {keyword}",
+            "keyword": keyword,
+            "message": None
+        }
         return render_template("search.html", **context_dict)
     else:
-        context_dict["subtitle"] = "a service to quickly register equipments and books."
+        context_dict = {
+            "message": "Enter any keywords."
+        }
         return render_template("index.html", **context_dict)
 
 
