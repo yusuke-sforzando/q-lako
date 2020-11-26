@@ -10,11 +10,7 @@ from asset import Asset
 @app.route("/", methods=["GET"])
 def index():
     app.logger.info("index(): GET /")
-    context_dict = {
-        "subtitle": "Registration of equipment and books",
-        "message": "Enter one of the following keywords: keyword, ISBN code, or ASIN code"
-    }
-    return render_template("index.html", **context_dict)
+    return render_template("index.html")
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -53,12 +49,11 @@ def registration():
     context_dict = {
         "subtitle": "a service that displays detailed information about the item."
     }
-    asin = request.form.get("asin", "")
-    if asin:
+    context_dict["asin"] = request.form.get("asin", "")
+    if context_dict["asin"]:
         for product in session.get("product_list", ""):
-            if product.asin == asin:
-                context_dict["asin"] = product.asin
-                registerable_asset = Asset(
+            if product.asin == context_dict["asin"]:
+                context_dict["registerable_asset"] = Asset(
                     title=product.title,
                     asin=product.asin,
                     url=product.url,
@@ -73,7 +68,6 @@ def registration():
                     note="",
                     registrant_name=""
                 )
-        print(registerable_asset)
     else:
         context_dict["message"] = "Enter any keywords."
     return render_template("registration.html", **context_dict)

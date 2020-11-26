@@ -1,8 +1,9 @@
 {% extends "_base.html" %}
 {% block main %}
+{% if not message %}
 <label>
   ASIN Code:
-  <p>{{ asin }}</p>
+  <p>{{ registerable_asset.asin }}</p>
 </label>
-
+{% endif %}
 {% endblock %}
