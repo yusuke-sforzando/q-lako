@@ -4,6 +4,8 @@ from flask import render_template, request
 
 from __init__ import app
 
+app.secret_key = "aasss"
+
 
 @app.route("/", methods=["GET"])
 def index():
@@ -20,8 +22,10 @@ def search():
         "keyword": keyword,
         "message": None if keyword else "Enter keywords back on the top page."
     }
-
-    return render_template("search.html", **context_dict)
+    if keyword:
+        return render_template("search.html", **context_dict)
+    else:
+        return render_template("index.html", **context_dict)
 
 
 if __name__ == "__main__":
