@@ -6,10 +6,10 @@
         {% for category, message in messages %}
         {% set color = colors[category] %}
         <div class="flash-message m-4">
-          <input type="radio" class="hidden" id="info-{{ loop.index }}">
+          <input type="radio" class="hidden" id="{{ category }}-{{ loop.index }}">
           <label
             class="flex items-start justify-between px-3 py-2 rounded shadow-xl text-white {{ color }} cursor-pointer"
-            for="info-{{ loop.index }}"
+            for="{{ category }}-{{ loop.index }}"
           >
             {{ message }}
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor">
