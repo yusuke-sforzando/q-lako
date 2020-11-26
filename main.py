@@ -4,8 +4,6 @@ from flask import render_template, request
 
 from __init__ import app
 
-app.secret_key = "aasss"
-
 
 @app.route("/", methods=["GET"])
 def index():
@@ -20,7 +18,7 @@ def search():
     context_dict = {
         "subtitle": f"Search Result for {keyword}",
         "keyword": keyword,
-        "message": None if keyword else "Enter keywords back on the top page."
+        "message": None if keyword else "Enter any keywords."
     }
     if keyword:
         return render_template("search.html", **context_dict)
