@@ -4,7 +4,6 @@ from amazon.exception import AmazonException
 from flask import render_template, request, session
 
 from __init__ import app, amazon_api_client
-from asset import Asset
 
 
 @app.route("/", methods=["GET"])
