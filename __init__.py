@@ -10,7 +10,8 @@ config_parser = ConfigParser()
 config_parser.read("settings.ini", encoding="utf8")
 
 app = Flask(__name__)
-app.config["AIRTABLE_TABLE_NAME"] = config_parser.get("DEFAULT", "airtable_table_name")
+app.config["THEME_COLOR_GRAY"] = config_parser.get("THEME-COLOR", "theme_color_gray")
+app.config["AIRTABLE_TABLE_NAME"] = config_parser.get("AIRTABLE", "airtable_table_name")
 
 amazon_api_client = AmazonAPI(os.getenv("amazon_access_key"),
                               os.getenv("amazon_secret_key"),
