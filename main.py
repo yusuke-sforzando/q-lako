@@ -36,7 +36,7 @@ def resister_airtable():
     # TODO: If registration fails, return to `/registration`.
     else:
         context_dict = {
-            # TODO: set asset from `request.form`.
+            # TODO: Set asset from `request.form`.
             "asset": {"title": "Kindle Oasis"}
         }
         return flash_message.show_with_render_template("Registration failed.", FlashCategories.ERROR,

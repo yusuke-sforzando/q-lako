@@ -46,5 +46,5 @@ def test_POST_register_airtable_success(test_client):
 def test_POST_register_airtable_failure(test_client):
     response = test_client.post("/register_airtable", data={"for_test": None}, follow_redirects=True)
     assert b"Asset details" in response.data
-    assert b"title: Kindle Oasis" in response.data
+    assert b"Title: Kindle Oasis" in response.data
     assert b"Registration failed." in response.data
