@@ -11,6 +11,10 @@
   color: var(--theme-color-gray);
 }
 
+.theme-bg-color-blue {
+  background-color: var(--theme-color-blue);
+}
+
 .theme-bg-color-gray {
   background-color: var(--theme-color-gray);
 }
