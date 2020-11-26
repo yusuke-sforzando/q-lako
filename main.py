@@ -10,7 +10,6 @@ app.secret_key = "aasss"
 @app.route("/", methods=["GET"])
 def index():
     app.logger.info("index(): GET /")
-<<<<<<< HEAD
     return render_template("index.html")
 
 
@@ -27,12 +26,6 @@ def search():
         return render_template("search.html", **context_dict)
     else:
         return render_template("index.html", **context_dict)
-=======
-    context_dict = {
-        "message": "This is dummy message."
-    }
-    return render_template("index.html", **context_dict)
->>>>>>> 0dbd2e4502e80138fd46b37b21fca805df05b594
 
 
 if __name__ == "__main__":

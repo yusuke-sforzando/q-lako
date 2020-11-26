@@ -12,22 +12,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-  {% include "_header.html" %}
-  <div class="text-center">
-    {% block main %}
-    {% endblock %}
-  </div>
-  {% if message %}
-  <p class="text-center">{{ message }}</p>
-  {% endif %}
-  {% include "_footer.html" %}
-  <!-- <script>
-  window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-  ga("create", "UA-XXXXX-Y", "auto"); ga("set", "anonymizeIp", true); ga("set", "transport", "beacon"); ga("send", "pageview")
-</script>
-<script src="https://www.google-analytics.com/analytics.js" async></script> -->
-=======
   <div class="flex flex-col h-screen">
     {% include "_header.html" %}
     {% if message %}
@@ -39,7 +23,6 @@
     </div>
     {% include "_footer.html" %}
   </div>
->>>>>>> 0dbd2e4502e80138fd46b37b21fca805df05b594
 </body>
 
 </html>
