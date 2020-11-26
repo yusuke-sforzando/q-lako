@@ -1,6 +1,6 @@
 # !/usr/bin/env python3
 
-from flask import render_template, request
+from flask import flash, redirect, request, render_template, url_for
 
 from __init__ import app
 
@@ -19,14 +19,11 @@ def search():
         context_dict = {
             "subtitle": f"Search Result for {keyword}",
             "keyword": keyword,
-            "message": None
         }
         return render_template("search.html", **context_dict)
     else:
-        context_dict = {
-            "message": "Enter any keywords."
-        }
-        return render_template("index.html", **context_dict)
+        flash("Enter any keywords.")
+        return redirect(url_for("index"))
 
 
 if __name__ == "__main__":

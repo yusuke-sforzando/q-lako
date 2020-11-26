@@ -10,6 +10,7 @@ config_parser = ConfigParser()
 config_parser.read("settings.ini", encoding="utf8")
 
 app = Flask(__name__)
+app.secret_key = os.urandom(16)
 app.config["THEME_COLOR_GRAY"] = config_parser.get("THEME-COLOR", "theme_color_gray")
 app.config["AIRTABLE_TABLE_NAME"] = config_parser.get("AIRTABLE", "airtable_table_name")
 
