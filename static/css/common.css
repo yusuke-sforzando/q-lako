@@ -16,11 +16,11 @@
 }
 
 .alert-toast {
-  animation: slide-in-right 1s ease-in-out both;
+  animation: slide-in-right 1s ease-out both;
 }
 
 .alert-toast input:checked {
-  animation: fade-out-right 1s ease-in-out both;
+  animation: fade-out-right 1s ease-in both;
 }
 
 @keyframes slide-in-right {
