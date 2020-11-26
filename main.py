@@ -17,7 +17,7 @@ def index():
 def search():
     if request.method == "GET":
         app.logger.info(f"search(): GET /{request.full_path}")
-    elif request.method == "POST":
+    else:
         app.logger.info(f"search(): POST /{request.full_path}")
     context_dict = {
         "subtitle": "a service that displays search results."
