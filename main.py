@@ -22,7 +22,7 @@ def search():
         }
         return render_template("search.html", **context_dict)
     else:
-        flash("Enter any keywords.")
+        flash("Enter any keywords.", "warning")
         return redirect(url_for("index"))
 
 

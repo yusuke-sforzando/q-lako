@@ -1,11 +1,16 @@
 <div class="relative flex flex-row-reverse">
   <div class="absolute flex-col w-full lg:w-2/5">
-    {% with messages = get_flashed_messages() %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
-        {% for message in messages %}
-        <div class="alert-toast m-4">
-          <input type="radio" class="hidden" id="info-{{ loop.index0 }}">
-          <label class="flex items-start justify-between p-2 bg-green-500 rounded shadow-xl text-white" for="info-{{ loop.index0 }}">
+        {% set colors = {"info": "bg-blue-500", "warning": "bg-yellow-500", "error": "bg-red-500"} %}
+        {% for category, message in messages %}
+        {% set color = colors[category] %}
+        <div class="flash-message m-4">
+          <input type="radio" class="hidden" id="info-{{ loop.index }}">
+          <label
+            class="flex items-start justify-between p-2 rounded shadow-xl text-white {{ color }} cursor-pointer"
+            for="info-{{ loop.index }}"
+          >
             {{ message }}
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />

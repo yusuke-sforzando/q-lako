@@ -15,11 +15,11 @@
   background-color: var(--theme-color-gray);
 }
 
-.alert-toast {
+.flash-message {
   animation: slide-in-right 1s ease-out both;
 }
 
-.alert-toast input:checked {
+.flash-message input:checked ~ * {
   animation: fade-out-right 1s ease-in both;
 }
 
