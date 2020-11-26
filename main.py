@@ -53,6 +53,7 @@ def search():
                     )
                 )
             session["asset_list"] = asset_list
+            context_dict["asset_list"] = asset_list
             context_dict["item_hits"] = item_hits
         except AmazonException as ae:
             app.logger.error(f"{ae}")
