@@ -5,6 +5,8 @@ from amazon.paapi import AmazonAPI
 from dotenv import load_dotenv
 from flask import Flask
 
+from flash_message import FlashMessage
+
 load_dotenv(verbose=True)
 config_parser = ConfigParser()
 config_parser.read("settings.ini", encoding="utf8")
@@ -18,6 +20,8 @@ amazon_api_client = AmazonAPI(os.getenv("amazon_access_key"),
                               os.getenv("amazon_secret_key"),
                               os.getenv("amazon_partner_tag"),
                               "JP")
+
+flash_message = FlashMessage()
 
 if os.getenv("GAE_ENV", "").startswith("standard"):
     """ Production in GAE """
