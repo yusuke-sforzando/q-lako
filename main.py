@@ -21,7 +21,7 @@ def search():
     context_dict = {
         "subtitle": "a service that displays search results."
     }
-    context_dict["keyword"] = request.form.get("query", "")
+    context_dict["keyword"] = request.args.get("query", "")
 
     if context_dict["keyword"]:
         try:
@@ -47,8 +47,12 @@ def registration():
     context_dict = {
         "subtitle": "a service that displays detailed information about the item."
     }
-    context_dict["asin"] = request.form.get("asin", "")
-    if not context_dict["asin"]:
+    asin = request.form.get("asin", "")
+    if asin:
+        for product in session["product_list"]:
+            if product.asin == asin:
+                context_dict["asin"] = product.asin
+    else:
         context_dict["message"] = "Enter any keywords."
     return render_template("registration.html", **context_dict)
 

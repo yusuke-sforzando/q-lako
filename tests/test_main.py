@@ -1,6 +1,10 @@
 import pytest
 
+import flask
 from main import app
+
+with app.test_request_context('/'):
+    assert flask.request.path == '/'
 
 
 @pytest.fixture
@@ -17,7 +21,7 @@ def test_GET_index(test_client):
 
 
 def test_GET_search_with_correct_query(test_client):
-    response = test_client.post("/search", data={"query": "kindle"})
+    response = test_client.post("/search?query=kindle")
     assert b"kindle" in response.data
 
 
@@ -41,7 +45,7 @@ def test_GET_registration_direct_access(test_client):
     assert b"Enter any keywords." in response.data
 
 
-def test_POST_registration_asin(test_client):
-    test_client.get("/search?query=kindle")
-    response = test_client.post("/registration", data={"asin": "B07RHCB5X8"})
-    assert b"B07RHCB5X8" in response.data
+def test_GET_registration_asin(test_client):
+    test_client.post("/search?query=サーカスTC")
+    response = test_client.post("/registration", data={"asin": "B07XB5WX89"})
+    assert b"B07XB5WX89" in response.data
