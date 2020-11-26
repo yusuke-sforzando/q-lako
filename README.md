@@ -57,11 +57,11 @@ Keep your passphrase in a secure location like [YubiKey](https://www.yubico.com)
     amazon_secret_key="amazon_secret_key"
     ```
 
-2. Encrypt `.env` to create `.env.gpg`
+1. Encrypt `.env` to create `.env.gpg`
 
     `gpg --symmetric --cipher-algo AES256 .env`
 
-3. Use your passphrase to decrypt `.env.gpg` .
+1. Use your passphrase to decrypt `.env.gpg` .
 
     `gpg --quiet --batch --decrypt --output=.env .env.gpg`
 
