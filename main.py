@@ -9,12 +9,10 @@ from asset import Asset
 @app.route("/", methods=["GET"])
 def index():
     app.logger.info("index(): GET /")
-    template_filename = "index.html"
     context_dict = {
-        "subtitle": template_filename,
-        "message": f"This is {template_filename}."
+        "message": "This is dummy message."
     }
-    return render_template(template_filename, **context_dict)
+    return render_template("index.html", **context_dict)
 
 
 @app.route("/registration", methods=["GET"])
