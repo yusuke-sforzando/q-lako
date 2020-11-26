@@ -2,13 +2,13 @@
 {% block main %}
 <p>Keyword: {{ keyword }}</p>
 <p>Item Hits: {{ item_hits }}</p>
-{% for asset in asset_list %}
+{% for product in product_list %}
 <div>
-  <image src="{{ asset.images }}" alt="image of {{ asset.title }}" />
-  <h2>{{ asset.title }}</h2>
+  <image src="{{ product.images.large }}" alt="image of {{ product.title }}" />
+  <h2>{{ product.title }}</h2>
   <form action="/registration" method="post">
     <div>
-      <input type="hidden" name="asin" value="{{ asset.asin }}">
+      <input type="hidden" name="asin" value="{{ product.asin }}">
       <button>Select</button>
     </div>
   </form>

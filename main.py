@@ -33,27 +33,8 @@ def search():
         try:
             product_list = amazon_api_client.search_products(keywords=keyword)
             item_hits = len(product_list)
-            asset_list = []
-            for product in product_list:
-                asset_list.append(
-                    Asset(
-                        title=product.title,
-                        asin=product.asin,
-                        url=product.url,
-                        images=product.images.large,
-                        manufacture=product.info.manufacturer,
-                        contributor="",
-                        product_group=product.info.product_group,
-                        publication_date=product.info.publication_date,
-                        features=product.product.features,
-                        default_position="",
-                        current_position="",
-                        note="",
-                        registrant_name=""
-                    )
-                )
-            session["asset_list"] = asset_list
-            context_dict["asset_list"] = asset_list
+            session["product_list"] = product_list
+            context_dict["product_list"] = product_list
             context_dict["item_hits"] = item_hits
         except AmazonException as ae:
             app.logger.error(f"{ae}")
@@ -74,9 +55,25 @@ def registration():
     }
     asin = request.form.get("asin", "")
     if asin:
-        for asset in session.get("asset_list", ""):
-            if asset.asin == asin:
-                context_dict["asin"] = asset.asin
+        for product in session.get("product_list", ""):
+            if product.asin == asin:
+                context_dict["asin"] = product.asin
+                registerable_asset = Asset(
+                    title=product.title,
+                    asin=product.asin,
+                    url=product.url,
+                    images=product.images.large,
+                    manufacture=product.info.manufacturer,
+                    contributor="",
+                    product_group=product.info.product_group,
+                    publication_date=product.info.publication_date,
+                    features=product.product.features,
+                    default_position="",
+                    current_position="",
+                    note="",
+                    registrant_name=""
+                )
+        print(registerable_asset)
     else:
         context_dict["message"] = "Enter any keywords."
     return render_template("registration.html", **context_dict)
