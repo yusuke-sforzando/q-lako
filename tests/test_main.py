@@ -22,16 +22,16 @@ def test_GET_search_with_correct_query(test_client):
 
 
 def test_GET_search_with_incorrect_query(test_client):
-    response = test_client.get("/search?unexpected_query=kindle")
+    response = test_client.get("/search?unexpected_query=kindle", follow_redirects=True)
     assert b"Enter any keywords." in response.data
 
 
 def test_GET_search_with_not_inputted_query(test_client):
-    response = test_client.get("/search?query=")
+    response = test_client.get("/search?query=", follow_redirects=True)
     assert b"a service to quickly register equipments and books." in response.data
     assert b"Enter any keywords." in response.data
 
 
 def test_GET_search_direct_access(test_client):
-    response = test_client.get("/search")
+    response = test_client.get("/search", follow_redirects=True)
     assert b"Enter any keywords." in response.data
