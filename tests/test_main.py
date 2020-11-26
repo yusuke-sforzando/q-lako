@@ -11,6 +11,10 @@ def test_client():
 
 def test_GET_index(test_client):
     response = test_client.get("/")
+<<<<<<< HEAD
+=======
+    assert b"This is dummy message." in response.data
+>>>>>>> 0dbd2e4502e80138fd46b37b21fca805df05b594
     assert response.status_code == 200
     assert b"Registration of equipment and books" in response.data
     assert b"Enter one of the following keywords: keyword, ISBN code, or ASIN code" in response.data

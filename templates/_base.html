@@ -7,10 +7,12 @@
   <title>q-lako - {{ subtitle | default("a service to quickly register equipments and books") }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://unpkg.com/tailwindcss@%5E1.0/dist/tailwind.min.css" rel="stylesheet">
-  <meta name="theme-color" content="#fafafa">
+  <link href="static/css/common.css" rel="stylesheet">
+  <meta name="theme-color" content="{{ config.THEME_COLOR_GRAY }}">
 </head>
 
 <body>
+<<<<<<< HEAD
   {% include "_header.html" %}
   <div class="text-center">
     {% block main %}
@@ -25,6 +27,19 @@
   ga("create", "UA-XXXXX-Y", "auto"); ga("set", "anonymizeIp", true); ga("set", "transport", "beacon"); ga("send", "pageview")
 </script>
 <script src="https://www.google-analytics.com/analytics.js" async></script> -->
+=======
+  <div class="flex flex-col h-screen">
+    {% include "_header.html" %}
+    {% if message %}
+    <p class="text-center">TODO: Show "{{ message }}" as a flash message.</p>
+    {% endif %}
+    <div class="container mx-auto flex-1 overflow-y-auto">
+      {% block main %}
+      {% endblock %}
+    </div>
+    {% include "_footer.html" %}
+  </div>
+>>>>>>> 0dbd2e4502e80138fd46b37b21fca805df05b594
 </body>
 
 </html>
