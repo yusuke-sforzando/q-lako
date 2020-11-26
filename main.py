@@ -10,12 +10,11 @@ from asset import Asset
 @app.route("/", methods=["GET"])
 def index():
     app.logger.info("index(): GET /")
-    template_filename = "index.html"
     context_dict = {
-        "subtitle": template_filename,
-        "message": f"This is {template_filename}."
+        "subtitle": "Registration of equipment and books",
+        "message": "Enter one of the following keywords: keyword, ISBN code, or ASIN code"
     }
-    return render_template(template_filename, **context_dict)
+    return render_template("index.html", **context_dict)
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -54,13 +53,12 @@ def search():
                     )
                 )
             session["asset_list"] = asset_list
-            context_dict["product_list"] = product_list
             context_dict["item_hits"] = item_hits
         except AmazonException as ae:
             app.logger.error(f"{ae}")
             raise ae
     else:
-        context_dict["message"] = "Enter keywords back on the top page."
+        context_dict["message"] = "Enter any keywords."
     return render_template("search.html", **context_dict)
 
 
@@ -71,8 +69,7 @@ def registration():
     elif request.method == "POST":
         app.logger.info(f"registration: POST /{request.full_path}")
     context_dict = {
-        "subtitle": "a service that displays detailed information about the item.",
-        "asin": ""
+        "subtitle": "a service that displays detailed information about the item."
     }
     asin = request.form.get("asin", "")
     if asin:
@@ -80,7 +77,7 @@ def registration():
             if asset.asin == asin:
                 context_dict["asin"] = asset.asin
     else:
-        context_dict["message"] = "Enter keywords back on the top page."
+        context_dict["message"] = "Enter any keywords."
     return render_template("registration.html", **context_dict)
 
 

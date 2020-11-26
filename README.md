@@ -12,6 +12,7 @@ q-lako is a service to quickly register equipments and books.
 - [How to](#how-to)
   - [Enter Python Virtual Environment](#enter-python-virtual-environment)
   - [Prepare `.env` and `.env.gpg`](#prepare-env-and-envgpg)
+  - [Prepare `settings.ini`](#prepare-settingsini)
   - [Run](#run)
   - [Lint](#lint)
   - [Test](#test)
@@ -62,7 +63,18 @@ Keep your passphrase in a secure location like [YubiKey](https://www.yubico.com)
 
 3. Use your passphrase to decrypt `.env.gpg` .
 
-   `gpg --quiet --batch --decrypt --output=.env .env.gpg`
+    `gpg --quiet --batch --decrypt --output=.env .env.gpg`
+
+### Prepare `settings.ini`
+
+```settings.ini
+[THEME-COLOR]
+theme_color_blue=#4caaba
+theme_color_gray=#393e46
+
+[AIRTABLE]
+airtable_table_name=q-lako
+```
 
 ### Run
 
