@@ -17,7 +17,7 @@ def test_GET_index(test_client):
 
 
 def test_GET_search_with_correct_query(test_client):
-    response = test_client.get("/search?query=kindle")
+    response = test_client.post("/search", data={"query": "kindle"})
     assert b"kindle" in response.data
 
 

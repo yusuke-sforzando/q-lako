@@ -22,7 +22,7 @@ def search():
     context_dict = {
         "subtitle": "a service that displays search results."
     }
-    keyword = request.args.get("query", "")
+    keyword = request.form.get("query", "")
 
     if keyword:
         context_dict["keyword"] = keyword
@@ -44,7 +44,7 @@ def search():
 def registration():
     if request.method == "GET":
         app.logger.info(f"registration: GET /{request.full_path}")
-    elif request.method == "POST":
+    else:
         app.logger.info(f"registration: POST /{request.full_path}")
     context_dict = {
         "subtitle": "a service that displays detailed information about the item."
