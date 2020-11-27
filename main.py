@@ -16,7 +16,7 @@ def index():
 def search():
     app.logger.info(f"search(): GET /{request.full_path}")
     context_dict = {
-        "subtitle": "a service that displays search results."
+        "subtitle": "Search results for {{ keyword }}"
     }
     context_dict["keyword"] = request.args.get("query", "")
 
