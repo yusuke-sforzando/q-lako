@@ -3,10 +3,9 @@
 <div>
   <form action="/registration" method="post">
     <h1>登録内容詳細</h1>
-    <image src="{{ registerable_asset.images }}" alt="image of {{ registerable_asset.title }}" />
     <div>
-      <src="{{ registerable_asset.url }}">
-        <input type="hidden" name="url" value="" />
+    <image src="{{ registerable_asset.images }}" alt="image of {{ registerable_asset.title }}" />
+    <input type="hidden" name="url" value="" />
     </div>
     <div>
       <label for="title_id">商品名/書籍名:</label>
