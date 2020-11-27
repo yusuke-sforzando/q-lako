@@ -47,9 +47,6 @@ def test_GET_search_direct_access(test_client):
     assert b"Enter any keywords." in response.data
 
 
-<< << << < HEAD
-
-
 def test_GET_registration_direct_access(test_client):
     response = test_client.get("/registration")
     assert b"Enter any keywords." in response.data
@@ -59,9 +56,6 @@ def test_GET_registration_asin(test_client):
     test_client.get("/search?query=サーカスTC")
     response = test_client.post("/registration", data={"asin": "B07XB5WX89"})
     assert b"B07XB5WX89" in response.data
-
-
-== == == =
 
 
 def test_POST_register_airtable_success(test_client):
@@ -75,6 +69,3 @@ def test_POST_register_airtable_failure(test_client):
     assert b"Asset details" in response.data
     assert b"Title: Kindle Oasis" in response.data
     assert b"Registration failed." in response.data
-
-
->>>>>> > ef416a6bc8bd4dfce657a72d0f22e3afadc44f92
