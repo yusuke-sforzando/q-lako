@@ -25,6 +25,12 @@ def test_GET_search_with_correct_query(test_client):
     assert b"kindle" in response.data
 
 
+def test_GET_search_with_using_session(test_client):
+    test_client.get("/search?query=kindle")
+    response = test_client.get("/search?query=kindle")
+    assert b"kindle" in response.data
+
+
 def test_GET_search_with_incorrect_query(test_client):
     response = test_client.get("/search?unexpected_query=kindle")
     assert b"Enter any keywords." in response.data

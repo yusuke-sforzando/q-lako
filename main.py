@@ -16,13 +16,13 @@ def index():
 def search():
     app.logger.info(f"search(): GET /{request.full_path}")
     context_dict = {
-        "subtitle": "Search results for {{ keyword }}"
+        "subtitle": "Search results for {{ keyword }}",
+        "keyword": request.args.get("query", "")
     }
     if session.get("product_list", ""):
         context_dict["product_list"] = session["product_list"]
         context_dict["item_hits"] = len(session["product_list"])
         return render_template("search.html", **context_dict)
-    context_dict["keyword"] = request.args.get("query", "")
     if context_dict["keyword"]:
         try:
             product_list = amazon_api_client.search_products(keywords=context_dict["keyword"])
