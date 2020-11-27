@@ -96,6 +96,7 @@ db.sqlite3-journal
 instance/
 .webassets-cache
 flask_session/
+tmp/
 
 # Scrapy stuff:
 .scrapy
