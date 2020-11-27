@@ -1,7 +1,20 @@
 {% extends "_base.html" %}
-{% block main %}
-  <h1>Search Result</h1>
-  {% if not message %}
-  <h2>Keyword: {{ keyword }}</h2>
-  {% endif %}
-{% endblock %}
+ {% block main %}
+   <h1>Search Result</h1>
+      {% if not message %}
+      <h2>Keyword: {{ keyword }}</h2>
+      <p>Item Hits: {{ item_hits }}</p>
+      {% endif %}
+      {% for product in product_list %}
+      <div>
+        <image src="{{ product.images.large }}" alt="image of {{ product.title }}" />
+        <h2>{{ product.title }}</h2>
+        <form action="/registration" method="post">
+          <div>
+            <input type="hidden" name="asin" value="{{ product.asin }}">
+            <button>Select</button>
+          </div>
+        </form>
+      </div>
+      {%- endfor %}
+ {% endblock %}
