@@ -29,7 +29,7 @@ def search():
             item_hits = len(product_list)
             session["product_list"] = product_list
             context_dict["product_list"] = product_list
-            context_dict["item_hits"] = item_hits
+            context_dict["item_hits"] = len(product_list)
 
         except AmazonException as ae:
             app.logger.error(f"{ae}")
