@@ -48,6 +48,7 @@ def registration():
     if asin:
         for product in session["product_list"]:
             if product.asin == asin:
+                session["asset"] = product
                 if product.info.contributors:
                     product.info.contributors = [contributor.name for contributor in product.info.contributors]
                 context_dict["product"] = product
@@ -58,15 +59,16 @@ def registration():
 
 @app.route("/register_airtable", methods=["POST"])
 def resister_airtable():
+    print(session["asset"].images.large)
     app.logger.info("register_airtable(): POST /register_airtable")
     app.logger.debug(f"{request.form=}")
     posted_asset = {}
     response = request.form
+
     if response:
         for key in response.keys():
             for value in response.getlist(key):
                 posted_asset[key] = value
-
         registrable_asset = Asset(
             title=posted_asset["title"],
             asin=posted_asset["asin"],
@@ -85,8 +87,12 @@ def resister_airtable():
         AirtableClient().register_asset(registrable_asset)
         return FlashMessage.show_with_redirect("Registration completed!", FlashCategories.INFO, url_for("index"))
     else:
+        context_dict = {
+            "product": session.get("asset", "")
+        }
+        app.logger.debug(f"{context_dict}=")
         return FlashMessage.show_with_render_template("Registration failed.", FlashCategories.ERROR,
-                                                      "registration.html",)
+                                                      "registration.html", **context_dict)
 
 
 if __name__ == "__main__":

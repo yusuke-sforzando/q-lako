@@ -1,10 +1,10 @@
 import pytest
 
+from dataclasses import asdict
 import flask
-from main import app
 
-with app.test_request_context('/'):
-    assert flask.request.path == '/'
+from asset import Asset
+from main import app
 
 
 @pytest.fixture
@@ -63,16 +63,3 @@ def test_GET_registration_asin_no(test_client):
     test_client.get("/search?query=サーカスTC")
     response = test_client.post("/registration", data={"asin": ""})
     assert b"a service to quickly register equipments and books." in response.data
-
-
-def test_POST_register_airtable_success(test_client):
-    response = test_client.post("/register_airtable", data={"for_test": True}, follow_redirects=True)
-    assert b"Registration of equipment and books." in response.data
-    assert b"Registration completed!" in response.data
-
-
-# def test_POST_register_airtable_failure(test_client):
-#     response = test_client.post("/register_airtable", data={"for_test": None}, follow_redirects=True)
-#     # assert b"Asset details" in response.data
-#     # assert b"Title: Kindle Oasis" in response.data
-#     assert b"Registration failed." in response.data
