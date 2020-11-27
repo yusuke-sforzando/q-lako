@@ -1,7 +1,8 @@
 {% extends "_base.html" %}
 {% block main %}
+{% if not message %}
   <h1>Asset details</h1>
   <p>Title: {{ product.title }}</p>
   <p>ASIN Code: {{ product.asin }}</p>
-
-  {% endblock %}
+{% endif %}
+{% endblock %}
