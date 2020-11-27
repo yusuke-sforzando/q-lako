@@ -25,10 +25,9 @@ def search():
         return render_template("search.html", **context_dict)
     if context_dict["keyword"]:
         try:
-            product_list = amazon_api_client.search_products(keywords=context_dict["keyword"])
-            session["product_list"] = product_list
-            context_dict["product_list"] = product_list
-            context_dict["item_hits"] = len(product_list)
+            session["product_list"] = amazon_api_client.search_products(keywords=context_dict["keyword"])
+            context_dict["product_list"] = session["product_list"]
+            context_dict["item_hits"] = len(session["product_list"])
 
         except AmazonException as ae:
             app.logger.error(f"{ae}")
