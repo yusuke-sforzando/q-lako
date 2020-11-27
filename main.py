@@ -12,12 +12,9 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/search", methods=["GET", "POST"])
+@app.route("/search", methods=["GET"])
 def search():
-    if request.method == "GET":
-        app.logger.info(f"search(): GET /{request.full_path}")
-    else:
-        app.logger.info(f"search(): POST /{request.full_path}")
+    app.logger.info(f"search(): GET /{request.full_path}")
     context_dict = {
         "subtitle": "a service that displays search results."
     }
@@ -54,8 +51,10 @@ def registration():
         for product in session["product_list"]:
             if product.asin == asin:
                 context_dict["asin"] = product.asin
+                # TODO: Convert Asset() from product.
     else:
         context_dict["message"] = "Enter any keywords."
+
     return render_template("registration.html", **context_dict)
 
 
