@@ -3,7 +3,7 @@
    <h1>Search Result</h1>
       {% if not message %}
       <h2>Keyword: {{ keyword }}</h2>
-      <p>Item Hits: {{ item_hits }}</p>
+      <p>Item Hits: {{ product_list|count }}</p>
       {% endif %}
       {% for product in product_list %}
       <div>
