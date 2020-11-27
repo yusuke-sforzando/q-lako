@@ -19,7 +19,7 @@ def search():
     else:
         app.logger.info(f"search(): POST /{request.full_path}")
     context_dict = {
-        "subtitle": "a service that displays search results."
+        "subtitle": "Search results for {{ keyword }}"
     }
     context_dict["keyword"] = request.args.get("query", "")
 
