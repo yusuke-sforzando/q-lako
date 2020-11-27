@@ -42,7 +42,7 @@ def search():
 @ app.route("/registration", methods=["GET", "POST"])
 def registration():
     if request.method == "GET":
-        app.logger.info(f"registration: GET /{request.full_path}")
+        app.logger.info(f"registration: GET {request.full_path}")
         return render_template("index.html", message="Enter any keywords.")
     else:
         app.logger.info(f"registration: POST /{request.full_path}")
