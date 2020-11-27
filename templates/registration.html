@@ -1,28 +1,92 @@
 {% extends "_base.html" %}
 {% block main %}
 <div>
-  <form action="/registration" method="post">
-    <h1>登録内容詳細</h1>
+  <form action="/register_airtable" method="post">
+    <h1>Registration details</h1>
     <div>
-    <image src="{{ registerable_asset.images }}" alt="image of {{ registerable_asset.title }}" />
-    <input type="hidden" name="url" value="" />
+    <image src="{{ product.images.large }}" alt="image of {{ product.title }}" />
+    <label for="image_url"></label>
+    <input type="hidden" name="image_url" id="image_url" value="{{ product.images.large }}" />
     </div>
     <div>
-      <label for="title_id">商品名/書籍名:</label>
-      <input type="text" name="title" id="title_id" value="{{ registerable_asset.title }}">
+      <label for="title_id">Title:</label>
+      <input type="text" name="title" id="title_id" value="{{ product.title }}">
     </div>
-    <p>URL: <a href="{{ registerable_asset.url}}">{{ registerable_asset.url }}</a></p>
-    <p>ASINコード: {{ registerable_asset.asin}}</p>
-    <p>製造元: {{ registerable_asset.manufacture }}</p>
-    <p>著者: {{ contributors }}</p>
-    <p>発売日: {{ registerable_asset.publication_date }}</p>
-    <p>カテゴリ: {{ registerable_asset.product_group }}</p>
-    <p>保管場所: VALUE_OF_REGISTRANT_NAME</p>
-    <p>登録者: VALUE_OF_REGISTRANT_NAME</p>
-    <p>登録日: {{ VALUE_OF_REGISTERED_AT }}</p>
-    <p>個数: VALUE_OF_QUANTITY</p>
-    <p>備考: VALUE_OF_NOTE</p>
-    <p>説明:{{ registerable_asset.features }}</p>
+    <div>
+      <label for="url">URL:{{ product.url }}"</label>
+      <input type="hidden" name="url" id="url" value="{{ product.url }}">
+    </div>
+    <div>
+      <label for="asin">ASIN Code:</label>
+      <input type="text" name="asin" id="asin" value="{{ product.asin }}">
+    </div>
+    <div>
+      <label for="manufacturer">Manufacturer:</label>
+      <input type="text" name="manufacturer" id="manufacturer" value="{{ product.info.manufacturer }}">
+    </div>
+    <div>
+      <label for="contributors">Contributors:</label>
+      <input type="text" name="contributors" id="contributors" value="{{ product.info.contributors }}">
+    </div>
+    <div>
+      <label for="publication_date">Publication_date:</label>
+      <input type="text" name="publication_date" id="publication_date" value="{{ product.info.publication_date }}">
+    </div>
+    <div>
+      <label for="product_group">Product_group:</label>
+      <input type="text" name="product_group" id="product_group" value="{{ product.info.product_group }}">
+    </div>
+    <div>
+      <p>Registrants_name:</p>
+      <select name="registrants_name">
+      <option value="yusuke-sforzando">yusuke-sforzando</option>
+      <option value="tomoya-sforzando">tomoya-sforzando</option>
+      <option value="shin-sforzando">shin-sforzando</option>
+      </select>
+    </div>
+    <div>
+    <p>Default positions:</p>
+    <select name="default_positions">
+      <p>Default_positions:</p>
+      <option value="sforzando-kawasaki">sforzando Kawasaki</option>
+      <option value="yusuke-house">yusuke house</option>
+      <option value="tomoya-house">tomoya house</option>
+      <option value="shin-house">shin house</option>
+    </select>
+    </div>
+    <p>Current positions:</p>
+    <select name="current_positions">
+      <option value="sforzando-kawasaki">sforzando Kawasaki</option>
+      <option value="yusuke-house">yusuke house</option>
+      <option value="tomoya-house">tomoya house</option>
+      <option value="shin-house">shin house</option>
+    </select>
+    </div>
+    <div>
+    <p>Registered at: {{ VALUE_OF_REGISTERED_AT }}</p>
+    </div>
+    <div>
+    <p>Quantity:</p>
+    <select name="quantity">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    </div>
+    <div>
+      <label for="note_id">Note: </label>
+      <input type="text" name="note" id="note_id" placeholder="Free description section is..." >
+    </div>
+    <div>
+      <label for="features">Features:</label>
+      <input type="text" name="features" id="features" value="{{ product.product.features }}">
+    </div>
+    <div>
+      <input type="button" value="Cancel" onClick="history.back()" />
+      <input type="submit" value="Register" />
+    </div>
   </form>
 </div>
 {% endblock %}

@@ -14,10 +14,8 @@
 <body>
   <div class="flex flex-col h-screen">
     {% include "_header.html" %}
-    {% if message %}
-    <p class="text-center">{{ message }}</p>
-    {% endif %}
     <div class="container mx-auto flex-1 overflow-y-auto">
+      {% include "_flash_message.html" %}
       {% block main %}
       {% endblock %}
     </div>
