@@ -18,8 +18,11 @@ def search():
     context_dict = {
         "subtitle": "Search results for {{ keyword }}"
     }
+    if session.get("product_list", ""):
+        context_dict["product_list"] = session["product_list"]
+        context_dict["item_hits"] = len(session["product_list"])
+        return render_template("search.html", **context_dict)
     context_dict["keyword"] = request.args.get("query", "")
-
     if context_dict["keyword"]:
         try:
             product_list = amazon_api_client.search_products(keywords=context_dict["keyword"])
@@ -41,6 +44,7 @@ def search():
 def registration():
     if request.method == "GET":
         app.logger.info(f"registration: GET /{request.full_path}")
+        return render_template("index.html", message="Enter any keywords.")
     else:
         app.logger.info(f"registration: POST /{request.full_path}")
     context_dict = {
@@ -53,8 +57,7 @@ def registration():
                 context_dict["asin"] = product.asin
                 # TODO: Convert Asset() from product.
     else:
-        context_dict["message"] = "Enter any keywords."
-
+        return render_template("index.html", message="Enter any keywords.")
     return render_template("registration.html", **context_dict)
 
 
