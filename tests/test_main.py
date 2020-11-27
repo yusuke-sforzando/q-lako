@@ -48,7 +48,8 @@ def test_GET_search_direct_access(test_client):
 
 
 def test_GET_registration_direct_access(test_client):
-    response = test_client.get("/registration")
+    response = test_client.get("/registration", follow_redirects=True)
+    assert b"a service to quickly register equipments and books." in response.data
     assert b"Enter any keywords." in response.data
 
 
