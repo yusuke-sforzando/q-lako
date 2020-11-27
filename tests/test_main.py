@@ -11,11 +11,27 @@ def test_client():
 
 def test_GET_index(test_client):
     response = test_client.get("/")
-    assert b"This is dummy message." in response.data
     assert response.status_code == 200
+    assert b"Registration of equipment and books." in response.data
+    assert b"Enter one of the following keywords: keyword, ISBN code, or ASIN code." in response.data
 
 
-def test_GET_registration(test_client):
-    response = test_client.get("/registration")
-    assert b"registration details" in response.data
-    assert response.status_code == 200
+def test_GET_search_with_correct_query(test_client):
+    response = test_client.get("/search?query=kindle")
+    assert b"kindle" in response.data
+
+
+def test_GET_search_with_incorrect_query(test_client):
+    response = test_client.get("/search?unexpected_query=kindle")
+    assert b"Enter any keywords." in response.data
+
+
+def test_GET_search_with_not_inputted_query(test_client):
+    response = test_client.get("/search?query=")
+    assert b"a service to quickly register equipments and books." in response.data
+    assert b"Enter any keywords." in response.data
+
+
+def test_GET_search_direct_access(test_client):
+    response = test_client.get("/search")
+    assert b"Enter any keywords." in response.data
