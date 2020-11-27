@@ -49,7 +49,7 @@ def registration():
                 context_dict["product"] = product
                 # TODO: Convert Asset() from product.
     else:
-        return render_template("index.html", message="Enter any keywords.")
+        return render_template("index.html")
     return render_template("registration.html", **context_dict, asset=session["product_list"])
 
 
