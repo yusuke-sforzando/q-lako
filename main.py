@@ -23,12 +23,10 @@ def search():
     if context_dict["keyword"]:
         try:
             session["product_list"] = amazon_api_client.search_products(keywords=context_dict["keyword"])
-            context_dict["product_list"] = session["product_list"]
-            context_dict["item_hits"] = len(session["product_list"])
         except AmazonException as ae:
             app.logger.error(f"{ae}")
             raise ae
-        return render_template("search.html", **context_dict)
+        return render_template("search.html", **context_dict, product_list=session["product_list"])
     else:
         return FlashMessage.show_with_redirect("Enter any keywords.", FlashCategories.WARNING, url_for("index"))
 
@@ -52,7 +50,7 @@ def registration():
                 # TODO: Convert Asset() from product.
     else:
         return render_template("index.html", message="Enter any keywords.")
-    return render_template("registration.html", **context_dict)
+    return render_template("registration.html", **context_dict, asset=session["product_list"])
 
 
 @app.route("/register_airtable", methods=["POST"])
