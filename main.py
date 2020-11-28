@@ -58,8 +58,7 @@ def registration():
 
 
 @app.route("/register_airtable", methods=["POST"])
-def resister_airtable():
-    print(session["asset"].images.large)
+def register_airtable():
     app.logger.info("register_airtable(): POST /register_airtable")
     app.logger.debug(f"{request.form=}")
     posted_asset = {}
