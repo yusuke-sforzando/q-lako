@@ -67,5 +67,6 @@ def test_GET_registration_asin_no(test_client):
 
 def test_GET_register_airtable(test_client):
     test_client.get("/search?query=サーカスTC")
-    response = test_client.post("/registration", data={"asin": "B07XB5WX89"})
+    test_client.post("/registration", data={"asin": "B07XB5WX89"})
+    response = test_client.post("/register_airtable")
     assert "サーカスTC" in response.data.decode("utf-8")
