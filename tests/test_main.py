@@ -57,6 +57,12 @@ def test_GET_registration_asin(test_client):
     assert b"B07XB5WX89" in response.data
 
 
+def test_GET_registration_contributors(test_client):
+    test_client.get("/search?query=DeepLearning")
+    response = test_client.post("/registration", data={"asin": "4873117585"})
+    assert b"4873117585" in response.data
+
+
 def test_GET_registration_asin_no(test_client):
     test_client.get("/search?query=サーカスTC")
     response = test_client.post("/registration", data={"asin": ""})
