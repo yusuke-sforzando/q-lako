@@ -61,13 +61,8 @@ def registration():
 def register_airtable():
     app.logger.info("register_airtable(): POST /register_airtable")
     app.logger.debug(f"{request.form=}")
-    posted_asset = {}
-    response = request.form
-
-    if response:
-        for key in response.keys():
-            for value in response.getlist(key):
-                posted_asset[key] = value
+    posted_asset = request.form.to_dict()
+    if posted_asset:
         registrable_asset = Asset(
             title=posted_asset["title"],
             asin=posted_asset["asin"],
@@ -82,7 +77,6 @@ def register_airtable():
             current_position=posted_asset["current_positions"],
             note=posted_asset["note"],
             registrant_name=posted_asset["registrants_name"])
-
         AirtableClient().register_asset(registrable_asset)
         return FlashMessage.show_with_redirect("Registration completed!", FlashCategories.INFO, url_for("index"))
     else:

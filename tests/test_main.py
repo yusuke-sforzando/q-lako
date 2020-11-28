@@ -1,9 +1,6 @@
 import pytest
 
-from dataclasses import asdict
-import flask
 
-from asset import Asset
 from main import app
 
 
@@ -65,8 +62,15 @@ def test_GET_registration_asin_no(test_client):
     assert b"a service to quickly register equipments and books." in response.data
 
 
-def test_GET_register_airtable(test_client):
+def test_POST_register_airtable_no_asin(test_client):
     test_client.get("/search?query=サーカスTC")
     test_client.post("/registration", data={"asin": "B07XB5WX89"})
     response = test_client.post("/register_airtable")
     assert "サーカスTC" in response.data.decode("utf-8")
+
+
+def test_POST_register_airtable_success(test_client):
+    test_client.get("/search?query=サーカスTC")
+    test_client.post("/registration", data={"asin": "B07XB5WX89"})
+    response = test_client.post("/register_airtable", follow_redirects=True)
+    assert b"Registration failed." in response.data
