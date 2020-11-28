@@ -36,7 +36,6 @@ Get the following information on purchased books and supplies to help you regist
 - Registrants Name
 - Default Positions
 - Current Positions
-- Quantity
 - Note
 - Features
 

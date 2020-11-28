@@ -90,7 +90,6 @@ def test_POST_register_airtable_success(test_client):
             ('registrants_name', 'yusuke-sforzando'),
             ('default_positions', 'sforzando-kawasaki'),
             ('current_positions', 'sforzando-kawasaki'),
-            ('quantity', '1'),
             ('note', ''),
             ('features', "['サーカスTC DX\\u3000サンドカラー', '【サーカスTCと共通 ●設営が簡単に出来るセットアップガイド付。']")
         ]
