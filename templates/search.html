@@ -2,17 +2,20 @@
 <h1 class="text-3xl theme-color-gray font-bold m-2 text-center">Search Result</h1>
 {% if not message %}
 <div class="text-xl theme-color-gray font-bold m-2 text-center">
-    <p>Keyword: {{ keyword }}<span>Item Hits: {{ product_list|count }}</span></p>
+    <p>Keyword: {{ keyword }}</p>
+    <p>Item Hits: {{ product_list|count }}</p>
 </div>
 {% endif %} {% for product in product_list %}
-<div class="theme-color-gray">
-    <image class="object-center h-64" src="{{ product.images.large }}" alt="image of {{ product.title }}" />
-    <h2 class="text-center theme-color-gray">Title: {{ product.title }}</h2>
-    <form action="/registration" method="post">
-        <div class="text-center theme-color-gray">
+<div class="border-b-2 border-fuchsia-600">
+    <div>
+        <image class="mx-auto h-64" src="{{ product.images.large }}" alt="image of {{ product.title }}" />
+    </div>
+    <div class="text-center">
+        <h2 class="theme-color-gray">Title: {{ product.title }}</h2>
+        <form action="/registration" method="post">
             <input type="hidden" name="asin" value="{{ product.asin }}">
-            <button class="ml-2 mt-5 px-5 py-2 theme-bg-color-blue rounded-full cursor-pointer">Select</button>
-        </div>
-    </form>
+            <button class="cursor-pointer ml-2 mt-5 px-10 py-2 theme-bg-color-blue rounded-full">Select</button>
+        </form>
+    </div>
 </div>
 {%- endfor %} {% endblock %}
