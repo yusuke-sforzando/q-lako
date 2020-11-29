@@ -15,6 +15,5 @@
     "yubi key"
   ],
   "python.pythonPath": "./venv/bin/python3",
-  "python.formatting.provider": "autopep8",
-  "git.ignoreLimitWarning": true
+  "python.formatting.provider": "autopep8"
 }

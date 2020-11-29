@@ -12,7 +12,7 @@
             <input type="text" name="title" id="title_id" value="{{ product.title }}" />
         </div>
         <div>
-            <label for="url">URL:{{ product.url }}"</label>
+            <a href="{{ product.url }}" class="no-underline ...">View on Amazon</a>
             <input type="hidden" name="url" id="url" value="{{ product.url }}" />
         </div>
         <div>
