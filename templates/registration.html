@@ -68,19 +68,25 @@
         </div>
     </div>
 
+    <div class="text-left">
+        <div>
+            <label for="note_id" class="block">Note: </label>
+            <input class="form-textarea mt-1 block w-full" rows="3" type="text" name="note" id="note_id" placeholder="Free description section is...">
+        </div>
+        <div>
+            <label for="features" class="block">Features:</label>
+            <input class="form-textarea mt-1 block w-full" rows="3" type="text" name="features" id="features" value="{{ product.product.features }}">
+        </div>
+        <div>
+            <label for="features" class="block">Features:</label>
+            <input class="form-textarea mt-1 block w-full" rows="3" type="text" name="features" id="features" value="{{ product.product.features }}"></textarea>
+            </label>
+        </div>
+    </div>
+
     <div class="text-center">
-        <div>
-            <label for="note_id">Note: </label>
-            <input type="text" name="note" id="note_id" placeholder="Free description section is...">
-        </div>
-        <div>
-            <label for="features">Features:</label>
-            <input type="text" name="features" id="features" value="{{ product.product.features }}">
-        </div>
-        <div>
-            <input class="cursor-pointer ml-2 mt-5 px-10 py-2 theme-bg-color-blue rounded-full" type="button" value="Cancel" onClick="history.back()" />
-            <input class="cursor-pointer ml-2 mt-5 px-10 py-2 theme-bg-color-blue rounded-full" type="submit" value="Register" />
-        </div>
+        <input class="cursor-pointer ml-2 mt-5 px-10 py-2 theme-bg-color-blue rounded-full" type="button" value="Cancel" onClick="history.back()" />
+        <input class="cursor-pointer ml-2 mt-5 px-10 py-2 theme-bg-color-blue rounded-full" type="submit" value="Register" />
     </div>
 </form>
 
