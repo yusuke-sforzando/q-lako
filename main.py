@@ -50,7 +50,7 @@ def registration():
             if product.asin == asin:
                 session["asset"] = product
                 if product.info.contributors:
-                    product.info.contributors = [contributor.name for contributor in product.info.contributors]
+                    product.info.contributors = ",".join([contributor.name for contributor in product.info.contributors])
                 if product.product.features:
                     product.product.features = ",".join(product.product.features)
 
@@ -81,6 +81,7 @@ def register_airtable():
             note=posted_asset["note"],
             registrant_name=posted_asset["registrants_name"])
         AirtableClient().register_asset(registrable_asset)
+        app.logger.info(f"Registration completed! {registrable_asset=}")
         return FlashMessage.show_with_redirect("Registration completed!", FlashCategories.INFO, url_for("index"))
     else:
         context_dict = {
