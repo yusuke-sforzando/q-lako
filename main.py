@@ -51,6 +51,9 @@ def registration():
                 session["asset"] = product
                 if product.info.contributors:
                     product.info.contributors = [contributor.name for contributor in product.info.contributors]
+                if product.product.features:
+                    product.product.features = ",".join(product.product.features)
+
                 context_dict["product"] = product
     else:
         return render_template("index.html")
