@@ -51,6 +51,9 @@ def registration():
                 session["asset"] = product
                 if product.info.contributors:
                     product.info.contributors = [contributor.name for contributor in product.info.contributors]
+                if product.product.features:
+                    product.product.features = ",".join(product.product.features)
+
                 context_dict["product"] = product
     else:
         return render_template("index.html")
@@ -61,7 +64,6 @@ def registration():
 def register_airtable():
     app.logger.info("register_airtable(): POST /register_airtable")
     app.logger.debug(f"{request.form=}")
-    print(f"{request.form=}")
     posted_asset = request.form.to_dict()
     if posted_asset:
         registrable_asset = Asset(
