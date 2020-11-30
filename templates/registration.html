@@ -2,15 +2,10 @@
 <div flex justify-center space-x-4>
     <h1 class="text-3xl theme-color-gray font-bold m-2 text-center">Registration details</h1>
 </div>
-<div>
-    <form action="/register_airtable" method="post">
-        <div class="container">
-            <image src="{{ product.images.large }}" alt="image of {{ product.title }}" />
-            <label for="image_url"></label>
-            <input type="hidden" name="image_url" id="image_url" value="{{ product.images.large }}" />
-        </div>
 
-        <div class="mx-48 text-2xl">
+<form action="/register_airtable" method="post">
+    <div class="flex justify-center space-x-4">
+        <div class="mx-48 text-xl my-8">
             <div>
                 <label for="title_id">Title:</label>
                 <input type="text" name="title" id="title_id" value="{{ product.title }}" />
@@ -66,23 +61,27 @@
             </select>
             </div>
         </div>
-
-        <div>
-            <div>
-                <label for="note_id">Note: </label>
-                <input type="text" name="note" id="note_id" placeholder="Free description section is...">
-            </div>
-            <div>
-                <label for="features">Features:</label>
-                <input type="text" name="features" id="features" value="{{ product.product.features }}">
-            </div>
-            <div>
-                <input type="button" value="Cancel" onClick="history.back()" />
-                <input type="submit" value="Register" />
-            </div>
+        <div class="-my-16">
+            <image src="{{ product.images.large }}" alt="image of {{ product.title }}" />
+            <label for="image_url"></label>
+            <input type="hidden" name="image_url" id="image_url" value="{{ product.images.large }}" />
         </div>
+    </div>
 
-    </form>
-</div>
+    <div class="text-center">
+        <div>
+            <label for="note_id">Note: </label>
+            <input type="text" name="note" id="note_id" placeholder="Free description section is...">
+        </div>
+        <div>
+            <label for="features">Features:</label>
+            <input type="text" name="features" id="features" value="{{ product.product.features }}">
+        </div>
+        <div>
+            <input class="cursor-pointer ml-2 mt-5 px-10 py-2 theme-bg-color-blue rounded-full" type="button" value="Cancel" onClick="history.back()" />
+            <input class="cursor-pointer ml-2 mt-5 px-10 py-2 theme-bg-color-blue rounded-full" type="submit" value="Register" />
+        </div>
+    </div>
+</form>
 
 {% endblock %}
